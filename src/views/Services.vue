@@ -1,6 +1,5 @@
 <template>
-    <h1>!</h1>
-    <booking-form />
+    <BookingForm />
 </template>
 
 <script setup>

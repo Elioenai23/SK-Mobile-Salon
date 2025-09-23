@@ -5,7 +5,7 @@
         <router-link to="/sign-in">Sign In/Log In</router-link>
         <router-link to="/about">About</router-link>
         <router-link to="/portfolio">Portfolio</router-link>
-        <router-link t0="/services">Services</router-link>
+        <router-link to="/services">Services</router-link>
 
         <button @click="handleSignOut" v-if="isLoggedIn">Sign Out</button>
     </nav>

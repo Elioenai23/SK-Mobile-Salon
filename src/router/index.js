@@ -1,4 +1,4 @@
-import { Component } from "react";
+
 import { createRouter, createWebHistory } from "vue-router";
 import { getUserState } from "../firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
