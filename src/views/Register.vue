@@ -2,7 +2,12 @@
     <h1>Create an Account</h1>
     <p><input type="email" placeholder="email" v-model="email" /></p>
     <p><input type="password" placeholder="password" v-model="password" /></p>
+    
+    <!--Password validation component with Regex-->
+    <PasswordValidation v-model="password" @valid="isPasswordValid = $event" />
+
     <p><button @click="register">Submit</button></p>
+
     <p><button @click="signInWithGoogle">Sign In With Google</button></p>
 </template>
 
@@ -10,11 +15,13 @@
 import { ref } from 'vue';
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRouter } from 'vue-router';
-
+import {PasswordValidation} from '../components/PasswordValidation.vue'
 
 const email = ref('')
 const password = ref('')
 const router = useRouter()
+const isPasswordValid = ref(false)
+
 
 const register = () => {
     const auth = getAuth()

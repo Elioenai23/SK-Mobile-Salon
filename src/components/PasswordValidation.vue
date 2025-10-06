@@ -1,6 +1,7 @@
 <template>
     <div>
         <input type="password" placeholder="password" v-model="password" />
+        <p v-if="error" style="color:red">{{ error }}</p>
     </div>
     
 </template>

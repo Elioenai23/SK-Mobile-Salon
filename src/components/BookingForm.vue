@@ -33,7 +33,6 @@
         <select v-model='visitType' required >
             <option value=''>-- Select a visit type --</option>
             <option value='salon'>Salon Visit</option>
-            <option value='salon'>Salon Visit</option>
             <option value='home'>Home Visit</option>
         </select>
     </label>
