@@ -11,6 +11,7 @@
 import { ref } from 'vue';
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRouter } from 'vue-router';
+import PasswordField from '../components/PasswordField.vue';
 
 const email = ref('')
 const password = ref('')

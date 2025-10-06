@@ -6,7 +6,7 @@
     <!--Password validation component with Regex-->
     <PasswordValidation v-model="password" @valid="isPasswordValid = $event" />
 
-    <p><button @click="register">Submit</button></p>
+    <p><button :disabled="!isPasswordValid" @click="register">Submit</button></p>
 
     <p><button @click="signInWithGoogle">Sign In With Google</button></p>
 </template>
@@ -15,7 +15,8 @@
 import { ref } from 'vue';
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useRouter } from 'vue-router';
-import {PasswordValidation} from '../components/PasswordValidation.vue'
+import PasswordValidation from '../components/PasswordValidation.vue'
+import PasswordField from '../components/PasswordField.vue';
 
 const email = ref('')
 const password = ref('')
@@ -24,6 +25,11 @@ const isPasswordValid = ref(false)
 
 
 const register = () => {
+    if(!isPasswordValid.value){
+        console.log("Password is invalid");
+        return;
+    }
+
     const auth = getAuth()
     createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((data) => {
