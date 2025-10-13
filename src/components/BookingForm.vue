@@ -37,7 +37,10 @@
         </select>
     </label>
     <!--Submit-->
-    <button type='submit'>Book Appointment</button>
+    <button type='submit' 
+    :disabled="!clientName || !date || !time || !selectedService || !visitType">
+    Book Appointment
+    </button>
     </form>
 </template>
 
@@ -67,21 +70,50 @@ onMounted(async () =>{
 //On submit function to submit booking
 const handleSubmit = async() => {
     const dateTime = new Date(`${date.value}T${time.value}`);
+
+//To prevent double bookings
+    const bookingsRef = collection(db, 'bookings');
+    const allBookings = await getDocs(bookingsRef);
+    const existingBooking = allBookings.docs.find(
+        doc => {
+            const b = doc.data();
+            return b.date.toDate().getTime() === dateTime.getTime();
+        });
+
+    if (existingBooking){
+    alert('Sorry, this time slot has already been booked!');
+    return;
+    }
+
+    //Adding a new booking
     try {
         await addDoc(collection(db, 'bookings'),{
             clientName: clientName.value,
-            serviceId: selectedService.value.serviceId,
+            serviceId: selectedService.value.id,
             serviceType: selectedService.value.serviceType,
             price: selectedService.value.price,
             visitType: visitType.value,
             date: Timestamp.fromDate(dateTime)
         });
-        alert('Booking successful')
-    } catch (error) {
+        alert('Booking successful');
+
+        //resetting the form
+        clientName.value = '';
+        date.value = '';
+        time.value = '';
+        selectedService.value = '';
+        visitType.value = '';
+    } 
+    catch (error) {
         console.error('There was an error adding the booking: ', error)
     }
+
+
     
-}
+};
+
+
+
 
 
 </script>
