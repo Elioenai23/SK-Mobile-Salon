@@ -17,7 +17,7 @@ const router = createRouter({
             //}
 
             },
-        {path: '/portfolio', component: () => import('../views/Portfolio.vue')}
+        {path: '/portfolio', component: () => import('../views/Portfolio.vue')},
         /*
         {
         path: '/feed', component: () => import('../views/Feed.vue),
@@ -26,6 +26,7 @@ const router = createRouter({
         }
         }
          */
+        {path: '/resetpassword', component: () => import('../views/ResetPassword.vue')},
     ]
 });
     /* 
