@@ -3,7 +3,8 @@
     <p><input type="email" placeholder="email" v-model="email" /></p>
     <p><input type="password" placeholder="password" v-model="password" /></p>
     <p v-if="errMsg">{{ errMsg }}</p>
-    <p><button @click="register">Submit</button></p>
+    <p><button @click="signIn">Submit</button></p>
+    <a>Forgot Password?</a>
     <p><button @click="signInWithGoogle">Sign In With Google</button></p>
 </template>
 
@@ -18,7 +19,7 @@ const password = ref('')
 const errMsg = ref()
 const router = useRouter()
 
-const register = () => {
+const signIn = () => {
 
     const auth = getAuth()
     signInWithEmailAndPassword(auth, email.value, password.value)

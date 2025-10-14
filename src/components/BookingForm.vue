@@ -33,7 +33,7 @@
         <select v-model='selectedService' required>
             <option disabled value=''>-- Select a service --</option>
             <option v-for='s in services' :key='s.id' :value='s'>
-                {{ s.serviceType }} -R{{ s.price }}
+                {{ s.serviceType }} - R{{ s.price }}
             </option>
 
         </select>
@@ -60,7 +60,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { getDocs, collection, addDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -68,7 +68,7 @@ import { db } from '../firebase';
 const clientName = ref('');
 const date = ref('');
 const time = ref('');
-const selectedService = ref('');
+const selectedService = ref(null);
 const visitType = ref('');
 const durationHours = ref(0);
 const durationMinutes = ref(30) //Will default to 30 minutes
@@ -78,11 +78,22 @@ const durationMinutes = ref(30) //Will default to 30 minutes
 const services = ref([]);
 //pulling from the services collection
 onMounted(async () =>{
-    const querySnapshot = await getDocs(collection(db, 'services'));
+   try{const querySnapshot = await getDocs(collection(db, 'services'));
     services.value = querySnapshot
         .docs
         .map(doc => ({ id: doc.id, ...doc.data() }))
+        console.log('Loaded services', services.value)
+    } catch (error){
+        console.error('Error loading services')
+    }
 });
+
+watch(selectedService, (service) => {
+    if (service && service.duration) {
+        durationHours.value = Math.floor(service.duration / 60);
+        durationMinutes.value = service.duration % 60;
+    }
+})
 
 
 //computing the end time
@@ -108,8 +119,17 @@ const handleSubmit = async() => {
 
 //To prevent double bookings
   const allBookings = await getDocs(collection(db, 'bookings'));
+
   const overlap = allBookings.docs.find(doc => {
-    const b = doc.data();
+     const b = doc.data();
+
+    //Safeguard because I have been getting errors about the overlap function
+    if(!b.date || typeof b.date.toDate !== 'function'){
+        console.warn('Skipping booking with invalid date: ', b);
+        return false;
+    }
+
+   
     const bStart = b.date.toDate();
     const bEnd = new Date(bStart.getTime() + (b.duration || 60) * 60000);
     return isOverlapping(startTime, endTime, bStart, bEnd);
@@ -128,7 +148,7 @@ const handleSubmit = async() => {
             serviceType: selectedService.value.serviceType,
             price: selectedService.value.price,
             visitType: visitType.value,
-            date: Timestamp.fromDate(dateTime),
+            date: Timestamp.fromDate(startTime),
             duration: totalDuration,
         });
         alert('Booking successful');
@@ -149,4 +169,5 @@ const handleSubmit = async() => {
 
     
 };
+
 </script>
