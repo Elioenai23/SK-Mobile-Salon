@@ -1,9 +1,16 @@
 
 <template>
+    <div>
+        <div v-if="!user">
+            <p>Please sign in to make an appointment.</p>
+            <router-link to="/sign-in">Go to Sign In</router-link>
+        </div>
+    </div>
+    <div>
   <form @submit.prevent='handleSubmit'>
     <!--The name for the client-->
     <label>
-        Name:
+        Name & Surname:
         <input v-model= 'clientName' type='text' required />
     </label>
     <!--The Date-->
@@ -39,8 +46,7 @@
         </select>
     </label>
 
-
-    <!--Visit type-->
+<!--Visit type-->
     <label>
         Visit Type:
         <select v-model='visitType' required >
@@ -53,16 +59,28 @@
     
     <!--Submit-->
     <button type='submit' 
-    :disabled="!clientName || !date || !time || !selectedService || !visitType">
+    :disabled="!isFormValid">
     Book Appointment
     </button>
     </form>
+    </div>
 </template>
 
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue';
 import { getDocs, collection, addDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase';
+import {getAuth, onAuthStateChanged} from 'firebase/auth';
+
+
+//Declaring variables for authentication
+const auth = getAuth();
+const user = ref(null);
+
+onAuthStateChanged(auth, (u)=>{
+    user.value = u;
+})
+
 
 //Declaring form fields
 const clientName = ref('');
@@ -104,6 +122,20 @@ const formattedEndTime = computed(() => {
     const end = new Date(start.getTime() + totalMinutes * 60000);
     return end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 });
+
+//For checking the form validity(users must be signed in)
+const isFormValid = computed(() =>{
+    return(
+        clientName.value &&
+        date.value &&
+        time.value &&
+        selectedService.value &&
+        visitType.value &&
+        user.value
+
+
+    );
+})
 
 
 //Help to check for overlapping bookings
@@ -150,6 +182,8 @@ const handleSubmit = async() => {
             visitType: visitType.value,
             date: Timestamp.fromDate(startTime),
             duration: totalDuration,
+            userId: user.value.uid,
+            userEmail: user.value.email,
         });
         alert('Booking successful');
 

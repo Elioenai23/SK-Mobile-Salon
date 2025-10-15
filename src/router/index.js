@@ -18,15 +18,7 @@ const router = createRouter({
 
             },
         {path: '/portfolio', component: () => import('../views/Portfolio.vue')},
-        /*
-        {
-        path: '/feed', component: () => import('../views/Feed.vue),
-        meta: {
-            requiresAuth: true,
-        }
-        }
-         */
-        
+        {path: '/resetpassword', component: () => import('../views/ResetPassword.vue')}
     ]
 });
     /* 

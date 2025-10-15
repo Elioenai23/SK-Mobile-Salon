@@ -4,7 +4,7 @@
     <p><input type="password" placeholder="password" v-model="password" /></p>
     <p v-if="errMsg">{{ errMsg }}</p>
     <p><button @click="signIn">Submit</button></p>
-    <a>Forgot Password?</a>
+    <router-link to="/resetpassword" class="forgot">Forgot password?</router-link>
     <p><button @click="signInWithGoogle">Sign In With Google</button></p>
 </template>
 
@@ -63,5 +63,10 @@ const signInWithGoogle = () => {
 </script>
 
 <style scoped>
+/*.forgot{
+    text-decoration: none;
+    color: black;
+} */
+
 
 </style>
