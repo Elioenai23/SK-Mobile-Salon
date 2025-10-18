@@ -1,10 +1,18 @@
 <template>
     <h1>Sign In to an Account</h1>
+    <!-- Email -->
     <p><input type="email" placeholder="email" v-model="email" /></p>
-    <p><input type="password" placeholder="password" v-model="password" /></p>
-    <p v-if="errMsg">{{ errMsg }}</p>
+    
+    <!--Password Field Component-->
+    <PasswordField v-model="password" placeholder="Enter your password" />
+
+    <!--Error Message-->
+    <p v-if="errMsg" style="color:red;">{{ errMsg }}</p>
+    <!--Submit button-->
     <p><button @click="signIn">Submit</button></p>
+    <!--Link to password reset page-->
     <router-link to="/resetpassword" class="forgot">Forgot password?</router-link>
+    <!--Google Sign In-->
     <p><button @click="signInWithGoogle">Sign In With Google</button></p>
 </template>
 

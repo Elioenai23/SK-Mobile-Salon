@@ -1,4 +1,5 @@
 <template>
+    <div class="nav">
     <nav>
         <router-link to="/">Home</router-link>
         <router-link to="/register">Register</router-link>
@@ -9,8 +10,13 @@
 
         <button @click="handleSignOut" v-if="isLoggedIn">Sign Out</button>
     </nav>
-
+    </div>
  <router-view />
+
+ <footer>
+    <div class="f-box">Copyright &copy; 2025</div>
+    <div>Powered by Vue.js</div>
+ </footer>
 
 </template>
 
@@ -45,5 +51,12 @@ const handleSignOut = () =>{
 </script>
 
 <style scoped>
+*{
+    padding: 0;
+    margin: 0;
+}
+.nav{
+    
+}
 
 </style>
