@@ -1,3 +1,267 @@
 <template>
-    <h1>About</h1>
+    <!--First section-->
+    <section class="first-section"> 
+        <h1>About</h1>
+
+        <!--Image-->
+        <section class="transform-img">
+            <img >
+        </section>
+    </section>
+    <section class="about-me">
+        <span class="img">
+            <img >
+        </span>
+
+        <div class="info">
+            <h1>It's All About My Story</h1>
+            <div class="p-text">I Have Been A Passionate Make Up Artists.</div>
+            <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, fuga. Quos obcaecati modi
+                cupiditate tempora provident officiis ratione! Cupiditate facere quis blanditiis eius dolorum
+                accusantium neque, cum quam minima iste consectetur nobis assumenda,
+
+                <br> <br>voluptatibus error recusandae
+                soluta similique amet dolore odit aspernatur. Similique, aperiam numquam laborum sed consectetur
+                praesentium quis ipsam, odio cum quibusdam non laudantium explicabo, est cumque? Nihil corrupti nesciunt
+                impedit similique eligendi qui dolorem. Facere assumenda cumque labore doloribus nemo voluptatibus, non
+                necessitatibus architecto quo, accusantium dolor?
+            </p>
+
+            <h2>Christina Kollar</h2>
+
+            <div class="icon-link">
+                <i class="fa-solid fa-phone">
+                    <a href="#">+27 00 000 0000</a>
+                </i>
+                <i class="fa-solid fa-envelope">
+                    <a href="#">aksalon@gmail.com</a>
+                </i>
+            </div>
+        </div>
+    </section>
+
+    <!--Third section-->
+    <section class="team-info">
+        <div class="team-text">
+            <div class="t-team">Our Awesome Team</div>
+            <div class="t-heading">We Have Solutions</div>
+            <div class="t-lines">This is where you can introduce the experts in your team.</div>
+        </div>
+        <div class="team-img-info">
+            <div class="box">
+                <div class="img">
+                    <img src="" alt="">
+                </div>
+                <div class="t-name">Christina Kollar</div>
+                <div class="t-position">Owner</div>
+            </div>
+            <div class="box">
+                <div class="img">
+                    <img src="" alt="">
+                </div>
+                <div class="t-name">Christina Kollar</div>
+                <div class="t-position">Owner</div>
+            </div>
+            <div class="box">
+                <div class="img">
+                    <img src="" alt="">
+                </div>
+                <div class="t-name">Christina Kollar</div>
+                <div class="t-position">Owner</div>
+            </div>
+            </div>
+    </section>
+
 </template>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+
+}
+
+:root {
+    --font-01: 'Poppins', sans-serif;
+    --font-02: 'Philosopher', sans-serif;
+
+    /* color  */
+    --global-color-0: #e41345;
+    --global-color-1: #f70077;
+    --global-color-2: #1a1a1a;
+    --global-color-3: #3e4359;
+    --global-color-4: #f7f7f7;
+    --global-color-5: #fff;
+    --global-color-6: #243673;
+    --global-color-7: #BFD1FF;
+
+}
+
+.first-section {
+     padding: 12rem 0% 15rem;
+}
+
+.first-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("");
+    z-index: -1;
+    opacity: .7;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.first-section h1 {
+    text-align: center;
+    font-size: 5rem;
+    font-family: var(--font-02);
+}
+
+.about-me{
+    padding: 2.5rem 5%;
+    display: flex;
+    gap: 2rem;
+}
+
+.about-me .img {
+    max-width: 400px;
+}
+
+.about-me .img img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.about-me .info {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.about-me .info h1 {
+    color: var(--global-color-1);
+    font-family: var(--font-02);
+}
+
+.about-me .info .p-text {
+    font-family: var(--font-02);
+}
+
+
+.about-me .info h2 {
+    font-family: var(--font-02);
+    color: var(--global-color-1);
+}
+
+.about-me .info .icon-link {
+    display: flex;
+    gap: 2rem;
+}
+
+.about-me .info .icon-link i {
+    color: var(--global-color-1);
+    overflow-y: hidden;
+}
+
+.about-me .info .icon-link i a {
+    padding-left: 10px;
+    text-decoration: none;
+    color: black;
+    font-family: var(--font-01);
+    transition: all .4s ease;
+}
+
+
+.about-me .info .icon-link i a:hover {
+    color: var(--global-color-1);
+}
+
+.team-Info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 3rem 2%;
+    text-align: center;
+}
+
+.team-info .team-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.team-info .team-text .t-team {
+    font-family: var(--font-02);
+    font-weight: 400;
+}
+
+.team-info .team-text .t-heading {
+    font-size: 2rem;
+    font-weight: 400;
+    font-family: var(--font-02);
+    color: var(--global-color-1);
+}
+
+
+
+.team-info .team-img-info {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(100px, 300px));
+    gap: 2rem;
+    margin: auto;
+    padding: 2rem;
+}
+
+.team-info .team-img-info .box {
+    overflow: hidden;
+    border-radius: 2%;
+    box-shadow: 0 0 18px 2px #d1d1d1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+
+}
+
+
+
+.team-info .team-img-info .box .img {
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.team-info .team-img-info .box .img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 2%;
+}
+
+.team-info .team-img-info .box .t-name {
+    overflow-y: hidden;
+    margin-top: 2rem;
+    letter-spacing: 2px;
+    padding: .2rem 0;
+}
+
+.team-info .team-img-info .box .t-position {
+    overflow-y: hidden;
+    margin-top: .7rem;
+    padding: .2rem 0;
+
+}
+</style>

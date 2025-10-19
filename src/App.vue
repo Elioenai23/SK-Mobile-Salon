@@ -13,7 +13,7 @@
     </div>
  <router-view />
 
- <footer>
+ <footer class="footer">
     <div class="f-box">Copyright &copy; 2025</div>
     <div>Powered by Vue.js</div>
  </footer>
@@ -55,8 +55,12 @@ const handleSignOut = () =>{
     padding: 0;
     margin: 0;
 }
-.nav{
+.nav a {
+    text-decoration: none;
+    padding: 2em;
+    color: black;
     
 }
+
 
 </style>
