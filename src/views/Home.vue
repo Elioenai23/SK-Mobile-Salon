@@ -1,11 +1,186 @@
 <template>
-<h1>Home</h1>
+    <section class="first-section">
+        <div class="front-page">
+            <div class="address">123, Central Square, New York</div>
+            <h2 class="heading">Sk Mobile Salon</h2>
+            <p class="para">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque totam aliquid eaque, quaerat
+                obcaecati enim placeat earum qui illum distinctio!</p>
+        </div>
+
+        <!--image section-->
+        <section class="transform-img">
+            <img src="" />
+        </section>
+    </section>
+    
+    <!-- second section -->
+     <section class="second-section">
+         <div class="four-img">
+            <img src="" alt="">
+            <img src="" alt="">
+            <img src="" alt="">
+            <img src="" alt="">
+        </div>
+
+
+        <div class="text-info">
+            <div class="greet">Welcome To</div>
+            <h2 class="title">My Beauty Studio</h2>
+            <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla aut odio vitae. Voluptatibus
+                deleniti at ullam error, voluptates pariatur quibusdam! Corporis corrupti in molestias consequuntur
+                dolorum eligendi vel animi suscipit!</p>
+            <button class="btn" @click="goToPortfolio">Learn More</button>
+        </div>
+     </section>
+
+
+     <!--Third section-->
+         <section class="third-section">
+        <h2>Services For Every Occasion</h2>
+        <p>List down special Services you offer an occasions like weddings, etc</p>
+
+        <div class="services-box">
+            <div class="box">
+                <h2>Weddings Makeup</h2>
+                <p>A little detail about the services you've mentioned above. Tell them what you do</p>
+            </div>
+            <div class="box">
+                <h2>Party Makeup</h2>
+                <p>A little detail about the services you've mentioned above. Tell them what you do</p>
+            </div>
+            <div class="box">
+                <h2>Fashion Makeup</h2>
+                <p>A little detail about the services you've mentioned above. Tell them what you do</p>
+            </div>
+            <div class="box">
+                <h2>Photo Makeup</h2>
+                <p>A little detail about the services you've mentioned above. Tell them what you do</p>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const goToPortfolio = () => {
+    router.push('/portfolio');
+}
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
+
+.first-section {
+    padding: 9rem 0% 20rem;
+    position: relative;
+    color: var(--global-color-4);
+}
+.first-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--global-color-2);
+    z-index: -1;
+    opacity: .7;
+}
+
+.first-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url();
+    z-index: -1;
+    opacity: .7;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.first-section .front-page {
+    padding: 0 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 60%;
+}
+
+.first-section .front-page .address {
+    color: var(--global-color-0);
+    font-size: 25px;
+    line-height: 1.2em;
+    font-family: var(--font-02);
+}
+
+.first-section .front-page .heading {
+    font-size: 3.24rem;
+    font-weight: 400;
+    font-family: var(--font-02);
+}
+
+.first-section .front-page .btn {
+    margin-top: 3rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.first-section .front-page .btn a {
+    border-radius: 7px;
+    padding: 17px 30px;
+    text-decoration: none;
+}
+
+.first-section .front-page .btn a:nth-child(1) {
+    border: 1px solid var(--global-color-0);
+    background-color: var(--global-color-0);
+    color: var(--global-color-4);
+    transition: all .4s ease;
+}
+
+.first-section .front-page .btn a:nth-child(1):hover {
+    border: 1px solid var(--global-color-1);
+    background-color: var(--global-color-1);
+}
+
+.first-section .front-page .btn a:nth-child(2) {
+    border: 1px solid var(--global-color-0);
+    background-color: var(--global-color-4);
+    color: var(--global-color-0);
+    transition: all .4s ease;
+}
+
+.first-section .front-page .btn a:nth-child(2):hover {
+    border: 1px solid var(--global-color-4);
+    background-color: var(--global-color-1);
+    color: var(--global-color-4);
+}
+
+.transform-img {
+    padding: 0;
+    position: absolute;
+    width: 130%;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+}
+
+.transform-img img {
+    transform: rotate(180deg);
+    z-index: 2;
+    width: 100%;
+    position: relative;
+    bottom: -1px;
+}
+
+
 
 </style>

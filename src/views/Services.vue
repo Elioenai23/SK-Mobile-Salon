@@ -1,4 +1,5 @@
 <template>
+    
     <section class="first-section">
         <h1>Services</h1>
         
@@ -103,9 +104,8 @@
             <i class="fa-solid fa-chevron-left prev" @click="goPrev"></i>
             <i class="fa solid fa-chevron-right next" @click="goNext"></i>
         </div>
-    </section>
-    
-    <AppointmentForm />
+    </section> 
+   <AppointmentForm /> 
 </template>
 
 <script setup>
@@ -131,25 +131,6 @@ const goNext = () => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
 
-*{
-    padding: 0;
-    margin: 0;
-}
-:root{
-    --font-01: 'Poppins', sans-serif;
-    --font-02: 'Philosopher', sans-serif;
-
-
-    --global-color-0: #e41345;
-    --global-color-1: #f70077;
-    --global-color-2: #1a1a1a;
-    --global-color-3: #3e4359;
-    --global-color-4: #f7f7f7;
-    --global-color-5: #fff;
-    --global-color-6: #243673;
-    --global-color-7: #BFD1FF;
-
-}
 
 .first-section {
     padding: 12rem 0% 15rem;

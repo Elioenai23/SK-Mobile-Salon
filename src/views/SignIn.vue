@@ -10,6 +10,8 @@
     <p v-if="errMsg" style="color:red;">{{ errMsg }}</p>
     <!--Submit button-->
     <p><button @click="signIn">Submit</button></p>
+    <!--Link to create an account-->
+    <router-link to="/register" class="create-account">Don't have an account? Click here</router-link>
     <!--Link to password reset page-->
     <router-link to="/resetpassword" class="forgot">Forgot password?</router-link>
     <!--Google Sign In-->
