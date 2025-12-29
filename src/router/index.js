@@ -18,7 +18,8 @@ const router = createRouter({
 
             },
         {path: '/portfolio', component: () => import('../views/Portfolio.vue')},
-        {path: '/resetpassword', component: () => import('../views/ResetPassword.vue')}
+        {path: '/resetpassword', component: () => import('../views/ResetPassword.vue')},
+        {path: '/preview', component: () => import('../views/Preview.vue')},
     ]
 });
     /* 

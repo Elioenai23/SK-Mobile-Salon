@@ -11,9 +11,11 @@
     <!--Submit button-->
     <p><button @click="signIn">Submit</button></p>
     <!--Link to create an account-->
-    <router-link to="/register" class="create-account">Don't have an account? Click here</router-link>
+   <p> Don't have an account?
+    <router-link to="/register" class="create-account">Click here</router-link>
+   </p>
     <!--Link to password reset page-->
-    <router-link to="/resetpassword" class="forgot">Forgot password?</router-link>
+    <p><router-link to="/resetpassword" class="forgot">Forgot password?</router-link></p>
     <!--Google Sign In-->
     <p><button @click="signInWithGoogle">Sign In With Google</button></p>
 </template>
@@ -75,6 +77,11 @@ const signInWithGoogle = () => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
 
+.create-account, .forgot{
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    color: #000000;
+}
 
 
 </style>

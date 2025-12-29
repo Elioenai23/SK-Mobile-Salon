@@ -34,15 +34,29 @@
     <!--Displaying the time the appointment should end-->
     <p v-if="formattedEndTime">Your appointment will end at: {{ formattedEndTime }}</p>
 
-    <!--Service-->
+    <!--New Category dropdown-->
     <label>
-        Service:
-        <select v-model='selectedService' required>
-            <option disabled value=''>-- Select a service --</option>
-            <option v-for='s in services' :key='s.id' :value='s'>
-                {{ s.serviceType }} - R{{ s.price }}
+        Category: 
+        <select v-model="selectedCategory" required>
+            <option disabled value="">-- Select Category --</option>
+            <option v-for="(services, category) in categories" :key="category" :value="category">
+                {{ cat }}
             </option>
+        </select>
+    </label>
 
+    <!--Service-->
+    <label v-if="selectedCategory">
+        Service: 
+        <select v-model = 'selectedService' required>
+            <option disabled value=" ">-- Select Service</option>
+            <option
+                v-for="s in filteredServices"
+                :key = "s.id"
+                :value = "s"
+            >
+                {{ s.serviceType }} - R {{ s.price }}
+            </option>
         </select>
     </label>
 
@@ -87,6 +101,24 @@ const clientName = ref('');
 const date = ref('');
 const time = ref('');
 const selectedService = ref(null);
+
+
+//New additions because the database stuff got redesigned/remade
+const categories = computed(()=>{
+    const map = {}
+
+    services.value.forEach(service => {
+        if (!map[service.category]){
+            map[service.category] = []
+        }
+        map[service.category].push(service)
+
+    })
+
+    return map
+})
+const selectedCategory = ref('');
+
 const visitType = ref('');
 const durationHours = ref(0);
 const durationMinutes = ref(30) //Will default to 30 minutes
@@ -95,15 +127,25 @@ const durationMinutes = ref(30) //Will default to 30 minutes
 //the services collection from my firebase db
 const services = ref([]);
 //pulling from the services collection
+
+const filteredServices = computed (() =>{
+    return services.value.filter(s => s.category === selectedCategory.value)
+})
 onMounted(async () =>{
-   try{const querySnapshot = await getDocs(collection(db, 'services'));
-    services.value = querySnapshot
-        .docs
-        .map(doc => ({ id: doc.id, ...doc.data() }))
-        console.log('Loaded services', services.value)
-    } catch (error){
-        console.error('Error loading services')
+ 
+    try{
+        const snapshot = await getDocs(collection(db, 'services'))
+
+        services.value = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }))
+        console.log('Loaded services:', services.value)
     }
+     catch(error){
+        console.error('Error loading services: ', error)
+    }
+      
 });
 
 watch(selectedService, (service) => {
@@ -111,7 +153,7 @@ watch(selectedService, (service) => {
         durationHours.value = Math.floor(service.duration / 60);
         durationMinutes.value = service.duration % 60;
     }
-})
+});
 
 
 //computing the end time

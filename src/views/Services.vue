@@ -105,7 +105,10 @@
             <i class="fa solid fa-chevron-right next" @click="goNext"></i>
         </div>
     </section> 
+    
+    <section class="appointment">
    <AppointmentForm /> 
+   </section>
 </template>
 
 <script setup>
