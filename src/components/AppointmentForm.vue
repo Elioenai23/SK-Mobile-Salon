@@ -39,8 +39,8 @@
         Category: 
         <select v-model="selectedCategory" required>
             <option disabled value="">-- Select Category --</option>
-            <option v-for="(services, category) in categories" :key="category" :value="category">
-                {{ cat }}
+            <option v-for="(servicesList, category) in categories" :key="category" :value="category">
+                {{ category }}
             </option>
         </select>
     </label>
@@ -70,7 +70,7 @@
         </select>
     </label>
 
-    
+    <pre>{{ categories}}</pre>
     <!--Submit-->
     <button type='submit' 
     :disabled="!isFormValid">
@@ -93,7 +93,7 @@ const user = ref(null);
 
 onAuthStateChanged(auth, (u)=>{
     user.value = u;
-})
+});
 
 
 //Declaring form fields
@@ -121,22 +121,24 @@ const selectedCategory = ref('');
 
 const visitType = ref('');
 const durationHours = ref(0);
-const durationMinutes = ref(30) //Will default to 30 minutes
+const durationMinutes = ref(30); //Will default to 30 minutes
 
 
 //the services collection from my firebase db
 const services = ref([]);
 //pulling from the services collection
 
+
+//Filtering services based on selected category
 const filteredServices = computed (() =>{
     return services.value.filter(s => s.category === selectedCategory.value)
-})
+});
 onMounted(async () =>{
  
     try{
-        const snapshot = await getDocs(collection(db, 'services'))
+        const querySnapshot = await getDocs(collection(db, 'services'))
 
-        services.value = snapshot.docs.map(doc => ({
+        services.value = querySnapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data()
         }))
@@ -149,11 +151,13 @@ onMounted(async () =>{
 });
 
 watch(selectedService, (service) => {
-    if (service && service.duration) {
+    //updating duration based on selected service
+    if (!service && !service.duration) return;
         durationHours.value = Math.floor(service.duration / 60);
         durationMinutes.value = service.duration % 60;
-    }
+    
 });
+
 
 
 //computing the end time
@@ -164,6 +168,8 @@ const formattedEndTime = computed(() => {
     const end = new Date(start.getTime() + totalMinutes * 60000);
     return end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 });
+
+
 
 //For checking the form validity(users must be signed in)
 const isFormValid = computed(() =>{
