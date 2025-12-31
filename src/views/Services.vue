@@ -106,9 +106,9 @@
         </div>
     </section> 
     
-    <section class="appointment">
+    <section class="appointment-section">
    <AppointmentForm /> 
-   </section>
+    </section>
 </template>
 
 <script setup>
@@ -128,6 +128,8 @@ const goPrev = () => {
 const goNext = () => {
     currentSlide.value = (currentSlide.value + 1) % images.value.length
 }
+
+console.log(AppointmentForm)
 
 </script>
 
@@ -264,4 +266,13 @@ const goNext = () => {
     padding: 18rem 0;
     margin: 1rem;
 }
+
+.appointment-section {
+  padding: 6rem 5%;
+  margin-top: 4rem;
+  position: relative;
+  z-index: 10;
+  background: #fff;
+}
+
 </style>

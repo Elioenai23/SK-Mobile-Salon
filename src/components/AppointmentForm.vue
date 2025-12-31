@@ -69,8 +69,7 @@
             <option value='home'>Home Visit</option>
         </select>
     </label>
-
-    <pre>{{ categories}}</pre>
+    
     <!--Submit-->
     <button type='submit' 
     :disabled="!isFormValid">
