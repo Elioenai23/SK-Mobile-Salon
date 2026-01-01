@@ -1,5 +1,6 @@
 <template>
-    <h1>Create an Account</h1>
+   <section class="register-section">
+   <h1>Create an Account</h1>
 
     <!--Email input for the user-->
     <p>
@@ -17,6 +18,7 @@
 
     <!--Google sign in-->
     <p><button @click="signInWithGoogle">Sign In With Google</button></p>
+   </section>
 </template>
 
 <script setup>
@@ -74,4 +76,14 @@ const signInWithGoogle = () => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
 
+.register-section h1 {
+ text-align: center;
+    font-size: 5rem;
+    font-family: var(--font-02);  
+    margin: 1em; 
+}
+
+.register-section button{
+    
+}
 </style>

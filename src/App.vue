@@ -1,15 +1,15 @@
 <template>
     <header>
-    <div class="nav">
-    <nav>
-        <router-link to="/">Home</router-link>
-        <router-link to="/register">Register</router-link>
-        <router-link to="/sign-in">Sign In/Log In</router-link>
-        <router-link to="/about">About</router-link>
-        <router-link to="/portfolio">Portfolio</router-link>
-        <router-link to="/services">Services</router-link>
+    <div class="nav-container">
+    <nav class="nav">
+        <router-link to="/" class="item">Home</router-link>
+        <router-link to="/register" class="item">Register</router-link>
+        <router-link to="/sign-in" class="item">Sign In/Log In</router-link>
+        <router-link to="/about" class="item">About</router-link>
+        <router-link to="/portfolio" class="item">Portfolio</router-link>
+        <router-link to="/services" class="item">Services</router-link>
 
-        <button @click="handleSignOut" v-if="isLoggedIn">Sign Out</button>
+        <button @click="handleSignOut" v-if="isLoggedIn" class="signout-btn">Sign Out</button>
     </nav>
     </div>
 </header>
@@ -17,7 +17,7 @@
 
  <footer class="footer">
     <div class="f-box">Copyright &copy; 2025</div>
-    <div>Powered by Vue.js</div>
+    <div>Powered by <a href="https://vuejs.org"></a> Vue.js</div>
  </footer>
 
 </template>
@@ -53,30 +53,93 @@ const handleSignOut = () =>{
 </script>
 
 <style scoped>
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  text-shadow: 4px 4px 4px #000;
+  color: #fff;
+  letter-spacing: 2px;
+  transition: 400ms cubic-bezier(0.7, -0.6, 0.3, 1.2) text-shadow,
+    400ms cubic-bezier(0.7, -0.6, 0.3, 1.2) letter-spacing;
+}
+
+.nav-container {
+  width: auto;
+  height: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+nav {
+    top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 80px;
+  background: #eec0c8;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  border-radius: 15px;
+}
 
 .nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--global-color-2);
-    padding: 15px 0;    
+  width: 50%;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  padding: 10 2em;
+   background: #f70077;
+   z-index: 1000;
 }
-.nav a {
-   text-decoration: none;
-    color: var(#fff);
-    margin: 0 15px;
-    font-weight: 500;
-    font-size: 18px;
-    /*justify-content: space-between;*/
-    /*display: flex; */
-    transition: all .4s ease;
+
+.item a {
+  position: relative;
+  user-select: none;
+  font-size: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 0 20px;
+}
+
+.item a:before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0px;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  box-shadow: 1px 1px 1px #000;
+  transform: scaleX(0);
+  transition: 400ms cubic-bezier(0.7, -0.6, 0.3, 1.2) transform;
+}
+
+.item a:hover {
+  text-shadow: 1px 1px 1px #000;
+  letter-spacing: 5px;
+}
+
+.item a:hover:before {
+  transform: scaleX(1);
+}
+.signout-btn {
     
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-left: 20px;
 }
-
-.nav a:hover {
-    color: var(--global-color-0);
-}
-
 footer {
     background-color: var(--global-color-2);
     color: var(--global-color-5);
