@@ -1,7 +1,12 @@
 <template>
     <header>
+       <div
+    class="nav-hotspot"
+    @mouseenter="showNav"
+  ></div>
+
     <div class="nav-container">
-    <nav class="nav">
+    <nav class="nav" :class="{retracted: isRetracted}" @mouseenter="showNav" @mouseleave="scheduleHide">
         <router-link to="/" class="item">Home</router-link>
         <router-link to="/register" class="item">Register</router-link>
         <router-link to="/sign-in" class="item">Sign In/Log In</router-link>
@@ -25,7 +30,7 @@
 <script setup>
 
 //Allows the user to sign out
-import { onMounted, ref } from 'vue';
+import { onMounted, ref , onBeforeUnmount} from 'vue';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import router from './router';
 import { db } from './firebase';
@@ -50,6 +55,37 @@ const handleSignOut = () =>{
         router.push('/');
     });
 }
+
+//Functions for the transitioning of the navbar
+let showTimeout;
+
+const isRetracted = ref(false);
+let timeoutId;
+
+const showNav = () => {
+  isRetracted.value = false;
+  clearTimeout(timeoutId);
+  clearTimeout(showTimeout);
+  showTimeout = setTimeout(() => {
+    isRetracted.value = false;
+  }, 120); 
+};
+
+const scheduleHide = () => {
+  clearTimeout(timeoutId);
+  timeoutId = setTimeout(() => {
+    isRetracted.value = true;
+  }, 4000);
+};
+onBeforeUnmount(() => {
+  clearTimeout(timeoutId);
+});
+
+onMounted(() => {
+  scheduleHide();
+});
+
+
 </script>
 
 <style scoped>
@@ -94,10 +130,31 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  position: absolute;
+  position: fixed;
   padding: 10 2em;
    background: #f70077;
-   z-index: 1000;
+   z-index: 1000;  
+   transition:transform 900ms cubic-bezier(0.16, 1, 0.3, 1), opacity 600ms ease-out;
+   
+    
+
+}
+.nav.retracted {
+  transform: translate(-50%, -120%);
+   opacity: 0;
+  pointer-events: none;
+   transition: transform 500ms cubic-bezier(0.7, 0, 0.84, 0), opacity 300ms ease-in;
+    
+    
+}
+.nav-hotspot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  z-index: 999;
+  transition: transform 0.3s ease-in-out ;
 }
 
 .item a {

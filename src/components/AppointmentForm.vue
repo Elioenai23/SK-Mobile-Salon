@@ -71,7 +71,7 @@
     </label>
     
     <!--Submit-->
-    <button type='submit' 
+    <button class="submit-btn" type='submit' 
     :disabled="!isFormValid">
     Book Appointment
     </button>
@@ -252,3 +252,16 @@ const handleSubmit = async() => {
 };
 
 </script>
+
+<style scoped>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+    .submit-btn{
+        margin: 1em;
+        padding: 0.5em 1em;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
