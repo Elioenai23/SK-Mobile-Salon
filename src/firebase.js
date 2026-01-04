@@ -2,8 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { ref } from "process";
-import { computed, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import {getFirestore} from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 

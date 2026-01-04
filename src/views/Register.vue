@@ -3,9 +3,7 @@
    <h1>Create an Account</h1>
 
     <!--Email input for the user-->
-    <p>
-        <input type="email" placeholder="Enter your email" v-model="email" required/>
-    </p>
+      <p> <input type="email" placeholder="Enter your email" v-model="email" required/> </p>
 
     <!--Password Field logic-->
     <PasswordField v-model="password" placeholder="Enter password" />
@@ -76,6 +74,17 @@ const signInWithGoogle = () => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
 
+.register-section {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.register-section input, .register-section button {
+  width: 100%;
+  max-width: 320px;
+}
+
 .register-section h1 {
  text-align: center;
     font-size: 5rem;
@@ -83,7 +92,7 @@ const signInWithGoogle = () => {
     margin: 1em; 
 }
 
-.register-section button{
-    
+.register-section p{
+    margin-left: -2.5em;
 }
 </style>

@@ -1,4 +1,5 @@
 <template>
+    <section class="signin-section">
     <h1>Sign In to an Account</h1>
     <!-- Email -->
     <p><input type="email" placeholder="email" v-model="email" /></p>
@@ -18,6 +19,7 @@
     <p><router-link to="/resetpassword" class="forgot">Forgot password?</router-link></p>
     <!--Google Sign In-->
     <p><button @click="signInWithGoogle">Sign In With Google</button></p>
+    </section>
 </template>
 
 <script setup>
@@ -79,9 +81,28 @@ const signInWithGoogle = () => {
 
 .create-account, .forgot{
     font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-    color: #000000;
+    text-decoration: underline;
+    
+}
+.create-account {
+    color: blue;
 }
 
+.signin-section h1 {
+     text-align: center;
+    font-size: 5rem;
+    font-family: var(--font-02);  
+    margin: 1em; 
+}
 
+.signin-section {
+     display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.signin-section p{
+    margin-left: -2.5em;
+}
 </style>

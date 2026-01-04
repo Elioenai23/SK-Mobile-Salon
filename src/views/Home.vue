@@ -73,6 +73,7 @@ const goToPortfolio = () => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
 
+/*--First Section-- */
 .first-section {
     padding: 9rem 0% 20rem;
     position: relative;
@@ -181,6 +182,119 @@ const goToPortfolio = () => {
     bottom: -1px;
 }
 
+/* --Second Section-- */
+.second-section {
+    padding: 0 2%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    align-items: center;
+}
+.second-section .four-img {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+    padding: 4rem 1rem 12rem;
+}
 
+.second-section .four-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    transition: all .4s ease;
+}
 
+.second-section .four-img img:hover{
+    transform: scale(1.1);
+}
+
+.second-section .four-img img:nth-child(2n+1){
+    margin-top: 4rem;
+}
+
+.second-section .text-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.second-section .text-info .greet {
+    color: var(--global-color-0);
+    font-family: var(--font-02);
+    font-size: 1.5rem;
+    line-height: 1.2em;
+}
+
+.second-section .text-info .title{
+     font-size: 2.5rem;
+    font-weight: 400;
+    font-family: var(--font-02);
+}
+
+.second-section .text-info .btn {
+    border: 1px solid var(--global-color-0);
+    width: fit-content;
+    border-radius: 7px;
+    padding: 17px 60px;
+    text-decoration: none;
+    background-color: var(--global-color-1);
+    color: var(--global-color-4);
+    font-weight: 400;
+    transition: all .4s ease;
+}
+
+.second-section .text-info .btn:hover{
+    background-color: var(--global-color-0);
+    border: 1px solid var(--global-color-0);
+}
+
+/* --Third Section-- */
+.third-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 3rem 2%;
+    background-color: #8484840a;
+}
+
+.third-section>h2 {
+     font-size: 2.5rem;
+    font-family: var(--font-02);
+    color: var(--global-color-0);
+    text-align: center;
+}
+.third-section>p{
+    text-align: center;
+}
+
+.third-section .services-box{
+margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(100px, 280px));
+    gap: 2rem;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.third-section .services-box .box {
+      padding: 3rem 1rem 1rem;
+    box-shadow: 0 0 8px 3px #eeeeee;
+    background-color: #fff;
+    border-radius: 7px;
+}
+
+.third-section .services-box .box h2{
+     font-family: var(--font-02);
+    line-height: 1.2em;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.third-section .services-box .box p{
+    font-family: var(--font-02);
+    line-height: 24px;
+}
 </style>

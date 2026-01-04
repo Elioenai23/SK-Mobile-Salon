@@ -5,12 +5,12 @@
 
         <!--Image-->
         <section class="transform-img">
-            <img >
+            <img src="" alt="" >
         </section>
     </section>
     <section class="about-me">
         <span class="img">
-            <img >
+            <img src="" alt="" >
         </span>
 
         <div class="info">

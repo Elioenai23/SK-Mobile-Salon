@@ -3,7 +3,7 @@
         <h1>Portfolio</h1>
 
         <section class="transform-img">
-            <img >
+            <img src="" alt="">
         </section>
     </section>
 

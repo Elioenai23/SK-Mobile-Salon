@@ -94,6 +94,10 @@ onMounted(() => {
     margin: 0;
     box-sizing: border-box;
 }
+
+header{
+  height: 0;
+}
 a {
   text-decoration: none;
   text-shadow: 4px 4px 4px #000;
