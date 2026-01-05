@@ -10,7 +10,7 @@
     <!--Error Message-->
     <p v-if="errMsg" style="color:red;">{{ errMsg }}</p>
     <!--Submit button-->
-    <p><button @click="signIn">Submit</button></p>
+    <p><button @click="signIn" class="submit-btn">Submit</button></p>
     <!--Link to create an account-->
    <p> Don't have an account?
     <router-link to="/register" class="create-account">Click here</router-link>
@@ -18,7 +18,7 @@
     <!--Link to password reset page-->
     <p><router-link to="/resetpassword" class="forgot">Forgot password?</router-link></p>
     <!--Google Sign In-->
-    <p><button @click="signInWithGoogle">Sign In With Google</button></p>
+    <p><button @click="signInWithGoogle" class="google-btn">Sign In With Google</button></p>
     </section>
 </template>
 
@@ -69,7 +69,7 @@ const signInWithGoogle = () => {
         router.push('/')
     })
     .catch((error) =>{
-
+        console.error("Sorry, there was an error signing in your account")
     }) 
 
 }
@@ -104,5 +104,21 @@ const signInWithGoogle = () => {
 
 .signin-section p{
     margin-left: -2.5em;
+}
+
+.google-btn{
+    margin: 1em;
+    border-radius: 2em;
+    padding: 0.3em;
+    font-size: 0.9em;
+    box-sizing: border-box;
+}
+
+.submit-btn{
+    margin: 0.5em;
+    border-radius: 2em;
+    padding: 0.4em 1em;
+    box-sizing: border-box;
+    font-size: 0.8em;
 }
 </style>

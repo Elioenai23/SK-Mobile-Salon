@@ -6,13 +6,13 @@
       <p> <input type="email" placeholder="Enter your email" v-model="email" required/> </p>
 
     <!--Password Field logic-->
-    <PasswordField v-model="password" placeholder="Enter password" />
-    <PasswordField v-model="confirmPassword" placeholder="Confirm password" />
+    <PasswordField v-model="password" placeholder="Enter password" class="pw-field" />
+    <PasswordField v-model="confirmPassword" placeholder="Confirm password" class="pw-field" />
     
     <!--Password validation component with Regex-->
     <PasswordValidation :password="password" :confirmPassword="confirmPassword" @valid="isPasswordValid = $event" />
 
-    <p><button :disabled="!isPasswordValid" @click="register">Submit</button></p>
+    <p><button :disabled="!isPasswordValid" @click="register" class="submit-btn">Submit</button></p>
 
     <!--Google sign in-->
     <p><button @click="signInWithGoogle" class="google-btn">Sign In With Google</button></p>
@@ -64,7 +64,7 @@ const signInWithGoogle = () => {
         router.push('/')
     })
     .catch((error) =>{
-
+        console.error("Sorry, there was trouble creating your account")
     }) 
 
 }
@@ -81,9 +81,9 @@ const signInWithGoogle = () => {
     text-align: center;
     overflow: visible;
 }
-.register-section input, .register-section button {
+.register-section input {
   width: 100%;
-  max-width: 320px;
+  max-width: 200px;
   box-sizing: border-box;
 }
 
@@ -95,11 +95,12 @@ const signInWithGoogle = () => {
 }
 .register-section input[type="email"] {
   position: relative;
-  left: -2.5em;
+  margin-left: -1em;
+  margin-bottom: 0.8em;
 }
 
 .register-section p {
-     margin: 0;
+    margin: 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -109,8 +110,20 @@ const signInWithGoogle = () => {
 .google-btn{
     margin: 1em;
     border-radius: 2em;
-    padding: 0.3em;
+    padding: 0.3em 1em;
     font-size: 0.9em;
     box-sizing: border-box;
+}
+
+.submit-btn{
+    margin: 0.5em;
+    border-radius: 2em;
+    padding: 0.4em 1em;
+    box-sizing: border-box;
+    font-size: 0.8em;
+}
+
+.pw-field {
+    margin: 0.2em 0.2em;
 }
 </style>
