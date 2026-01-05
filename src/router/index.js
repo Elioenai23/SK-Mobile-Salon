@@ -8,8 +8,8 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {path: '/', component:() => import("../views/Home.vue")},
-        {path: '/register', component:() => import("../views/Register.vue")},
-        {path: '/sign-in', component:() => import("../views/SignIn.vue")},
+        {path: '/register', component:() => import("../views/Register.vue"), meta:{guestOnly: true}},
+        {path: '/sign-in', component:() => import("../views/SignIn.vue"), meta: {guestOnly: true}},
         {path: '/about', component: () => import("../views/About.vue")},
         {path: '/services', component: () => import("../views/Services.vue"),
             //meta: {
@@ -22,7 +22,7 @@ const router = createRouter({
         
     ]
 });
-    /* 
+     //redirecting the signed in user back to the homepage
         const getCurrentUser = () => {
             return new Promise((resolve, reject) => {
                  const removeListener = onAuthStateChanged(
@@ -35,21 +35,17 @@ const router = createRouter({
                  );
                 });
             };
-    */
+    
 
-/* 
-    router.beforeEach(async(to, from, next) => {
-        if(to.matched.some((record) => record.meta.requiresAuth)){
-            if(await getCurrentUser()){
-            next();
-            } else{
-                alert('you don't have access!');
-                next('/')
-                }
-        } else{
-            next();
+ 
+    router.beforeEach(async(to) => {
+        const user = await getCurrentUser();
+
+        if (to.meta.guestOnly && user){
+            return '/'
         }
-    });
-*/
+        }
+    );
+
 
 export default router;

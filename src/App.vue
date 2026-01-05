@@ -8,8 +8,8 @@
     <div class="nav-container">
     <nav class="nav" :class="{retracted: isRetracted}" @mouseenter="showNav" @mouseleave="scheduleHide">
         <router-link to="/" class="item">Home</router-link>
-        <router-link to="/register" class="item">Register</router-link>
-        <router-link to="/sign-in" class="item">Sign In/Log In</router-link>
+        <router-link to="/register" class="item" v-if="!isLoggedIn">Register</router-link>
+        <router-link to="/sign-in" class="item" v-if="!isLoggedIn">Sign In/Log In</router-link>
         <router-link to="/about" class="item">About</router-link>
         <router-link to="/portfolio" class="item">Portfolio</router-link>
         <router-link to="/services" class="item">Services</router-link>

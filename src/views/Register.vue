@@ -15,7 +15,7 @@
     <p><button :disabled="!isPasswordValid" @click="register">Submit</button></p>
 
     <!--Google sign in-->
-    <p><button @click="signInWithGoogle">Sign In With Google</button></p>
+    <p><button @click="signInWithGoogle" class="google-btn">Sign In With Google</button></p>
    </section>
 </template>
 
@@ -79,10 +79,12 @@ const signInWithGoogle = () => {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    overflow: visible;
 }
 .register-section input, .register-section button {
   width: 100%;
   max-width: 320px;
+  box-sizing: border-box;
 }
 
 .register-section h1 {
@@ -91,8 +93,24 @@ const signInWithGoogle = () => {
     font-family: var(--font-02);  
     margin: 1em; 
 }
+.register-section input[type="email"] {
+  position: relative;
+  left: -2.5em;
+}
 
-.register-section p{
-    margin-left: -2.5em;
+.register-section p {
+     margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.google-btn{
+    margin: 1em;
+    border-radius: 2em;
+    padding: 0.3em;
+    font-size: 0.9em;
+    box-sizing: border-box;
 }
 </style>
