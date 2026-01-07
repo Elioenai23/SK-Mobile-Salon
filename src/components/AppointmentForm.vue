@@ -17,12 +17,30 @@
     <label>
         Date:
         <input v-model='date' type='date' required  />
+        
     </label>
     <!--Time-->
-    <label>
-        Time:
-        <input v-model='time' type='time' required />
-    </label>
+   <label v-if="availableSlots.length">
+  Time:
+  <select v-model="time" required>
+    <option disabled value="">-- Select a time --</option>
+
+    <option
+      v-for="slot in availableSlots"
+      :key="slot.start.getTime()"
+      :value="slot.start.toTimeString().slice(0, 5)"
+      :disabled="!slot.available"
+    >
+      {{ slot.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
+      <span v-if="!slot.available"> (Booked)</span>
+    </option>
+  </select>
+</label>
+
+<p v-else-if="date">
+  No available slots for this day.
+</p>
+
 
     <!--Appointment duration-->
     <label>
@@ -85,6 +103,77 @@ import { getDocs, collection, addDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 import {getAuth, onAuthStateChanged} from 'firebase/auth';
 
+//Variables for new booking function that will display open appointments 
+const OPEN_HOUR = 8;
+const CLOSE_HOUR = 18;
+const SLOT_MINUTES = 30;
+
+//Declaring form fields
+const clientName = ref('');
+const date = ref('');
+const time = ref('');
+const selectedService = ref(null);
+
+const availableSlots = ref([]);
+const dayBookings = ref([]);
+
+const effectiveDuration = computed(() =>{
+    return selectedService.value?.duration ?? 30;
+})
+
+const overlapsWithService = (slotStart, booking) => {
+    const slotEnd = new Date (
+        slotStart.getTime() + effectiveDuration.value * 60000
+    )
+    
+    const bookingStart = booking.date.toDate();
+    const bookingEnd = new Date(
+        bookingStart.getTime() + (booking.duration ?? 30) * 60000
+    )
+
+    return slotStart < bookingEnd && bookingStart < slotEnd
+}
+
+const generateAvailableSlots = () => {
+    availableSlots.value = []
+
+    // guard - empty string
+    if (!date.value) return
+    
+
+    const baseDate = new Date (`${date.value}T00:00:00`)
+    if (isNaN(baseDate)) return
+
+    let current = new Date(baseDate)
+    current.setHours(OPEN_HOUR, 0 , 0, 0)
+
+    const endOfDay = new Date(baseDate)
+    endOfDay.setHours(CLOSE_HOUR, 0 , 0 , 0)
+
+    while (current < endOfDay) {
+        const slotStart = new Date(current)
+        const slotEnd = new Date(
+            slotStart.getTime() + effectiveDuration.value * 60000
+        )
+
+    if (slotEnd > endOfDay) break
+
+    const isBooked = dayBookings.value.some(booking => overlapsWithService(slotStart, booking))
+
+      availableSlots.value.push({
+        start: slotStart,
+        end: slotEnd,
+        available: !isBooked
+    })
+
+    current = new Date(current.getTime() + SLOT_MINUTES * 60000)
+    }
+}
+
+//Watchers for the slot function
+watch(date, generateAvailableSlots)
+watch(selectedService, generateAvailableSlots)
+watch(dayBookings, generateAvailableSlots)
 
 //Declaring variables for authentication
 const auth = getAuth();
@@ -95,11 +184,7 @@ onAuthStateChanged(auth, (u)=>{
 });
 
 
-//Declaring form fields
-const clientName = ref('');
-const date = ref('');
-const time = ref('');
-const selectedService = ref(null);
+
 
 
 //New additions because the database stuff got redesigned/remade
