@@ -35,7 +35,7 @@ const router = useRouter()
 const isPasswordValid = ref(false)
 const confirmPassword = ref('')
 
-
+//Register function
 const register = () => {
     if(!isPasswordValid.value){
         console.log("Password is invalid or does not match.");

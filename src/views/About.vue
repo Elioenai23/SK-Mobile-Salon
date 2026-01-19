@@ -27,14 +27,12 @@
                 necessitatibus architecto quo, accusantium dolor?
             </p>
 
-            <h2>Christina Kollar</h2>
+            <h2>Snoza Khoza</h2>
 
             <div class="icon-link">
-                <i class="fa-solid fa-phone">
-                    <a href="#">+27 00 000 0000</a>
-                </i>
+                    <p>+27 78 727 6711</p>
                 <i class="fa-solid fa-envelope">
-                    <a href="#">aksalon@gmail.com</a>
+                    <a href="#">snozakhozasno@gmail.com</a>
                 </i>
             </div>
         </div>
@@ -52,24 +50,10 @@
                 <div class="img">
                     <img src="" alt="">
                 </div>
-                <div class="t-name">Christina Kollar</div>
+                <div class="t-name">Snoza Khoza</div>
                 <div class="t-position">Owner</div>
-            </div>
-            <div class="box">
-                <div class="img">
-                    <img src="" alt="">
-                </div>
-                <div class="t-name">Christina Kollar</div>
-                <div class="t-position">Owner</div>
-            </div>
-            <div class="box">
-                <div class="img">
-                    <img src="" alt="">
-                </div>
-                <div class="t-name">Christina Kollar</div>
-                <div class="t-position">Owner</div>
-            </div>
-            </div>
+            </div>      
+        </div>
     </section>
 
 </template>

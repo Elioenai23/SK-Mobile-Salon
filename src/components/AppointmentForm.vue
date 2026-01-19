@@ -134,13 +134,14 @@ const overlapsWithService = (slotStart, booking) => {
     return slotStart < bookingEnd && bookingStart < slotEnd
 }
 
+//Watch for date changes to load bookings for that day
 const generateAvailableSlots = () => {
     availableSlots.value = []
 
     // guard - empty string
     if (!date.value) return
     
-
+    //Load bookings for the selected date
     const baseDate = new Date (`${date.value}T00:00:00`)
     if (isNaN(baseDate)) return
 
@@ -158,6 +159,7 @@ const generateAvailableSlots = () => {
 
     if (slotEnd > endOfDay) break
 
+    //Check if the slot overlaps with any existing booking
     const isBooked = dayBookings.value.some(booking => overlapsWithService(slotStart, booking))
 
       availableSlots.value.push({
@@ -218,7 +220,7 @@ const filteredServices = computed (() =>{
     return services.value.filter(s => s.category === selectedCategory.value)
 });
 onMounted(async () =>{
- 
+ //Fetching services from Firestore
     try{
         const querySnapshot = await getDocs(collection(db, 'services'))
 
@@ -293,7 +295,7 @@ const handleSubmit = async() => {
         return false;
     }
 
-   
+    //Calculating booking start and end times
     const bStart = b.date.toDate();
     const bEnd = new Date(bStart.getTime() + (b.duration || 60) * 60000);
     return isOverlapping(startTime, endTime, bStart, bEnd);
