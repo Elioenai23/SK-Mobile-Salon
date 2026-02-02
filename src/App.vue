@@ -1,5 +1,12 @@
 <template>
     <header>
+       <button
+        class="hamburger"
+        v-if="isMobile"
+        @click="isRetracted = !isRetracted"
+        >
+        ☰
+      </button>
        <div
     class="nav-hotspot"
     @mouseenter="showNav"
@@ -7,6 +14,7 @@
 
     <div class="nav-container">
     <nav class="nav" :class="{retracted: isRetracted}" @mouseenter="showNav" @mouseleave="scheduleHide">
+     
         <router-link to="/" class="item">Home</router-link>
         <router-link to="/register" class="item" v-if="!isLoggedIn">Register</router-link>
         <router-link to="/sign-in" class="item" v-if="!isLoggedIn">Sign In/Log In</router-link>
@@ -63,15 +71,13 @@ const isRetracted = ref(false);
 let timeoutId;
 
 const showNav = () => {
-  isRetracted.value = false;
-  clearTimeout(timeoutId);
-  clearTimeout(showTimeout);
-  showTimeout = setTimeout(() => {
-    isRetracted.value = false;
-  }, 120); 
+  if (isMobile.value) return  //modified handlers for mobile view
+  isRetracted.value = false
+  clearTimeout(timeoutId)
 };
 
 const scheduleHide = () => {
+  if(isMobile) return
   clearTimeout(timeoutId);
   timeoutId = setTimeout(() => {
     isRetracted.value = true;
@@ -85,6 +91,28 @@ onMounted(() => {
   scheduleHide();
 });
 
+//mobile logic
+const isMobile = ref(window.innerWidth <= 768)
+
+const handleResize = () => {
+  isMobile.value = window.innerWidth <= 768
+}
+
+onMounted(()=> {
+  window.addEventListener('resize', handleResize)
+})
+
+onBeforeUnmount(()=>{
+  window.removeEventListener('resize', handleResize)
+})
+
+onMounted(()=>{
+  if (!isMobile.value){
+    scheduleHide()
+  } else {
+    isRetracted.value = true
+  }
+})
 
 </script>
 
@@ -201,6 +229,46 @@ nav {
     transition: background-color 0.3s ease;
     margin-left: 20px;
 }
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .nav {
+    width: 90%;
+    flex-direction: column;
+    height: auto;
+    padding: 1em 0;
+  }
+
+  .hamburger {
+    display: block;
+    margin-bottom: 1em;
+  }
+
+  .item {
+    margin: 10px 0;
+  }
+
+  .nav.retracted {
+    transform: translate(-50%, -150%);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px){
+  .nav-hotspot {
+    display: none;
+  }
+}
+
 footer {
     background-color: var(--global-color-2);
     color: var(--global-color-5);
