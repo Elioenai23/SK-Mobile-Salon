@@ -3,7 +3,7 @@
        <button
         class="hamburger"
         v-if="isMobile"
-        @click="isRetracted = !isRetracted"
+        @click="toggleNav"
         >
         ☰
       </button>
@@ -13,7 +13,7 @@
   ></div>
 
     <div class="nav-container">
-    <nav class="nav" :class="{retracted: isRetracted}" @mouseenter="showNav" @mouseleave="scheduleHide">
+    <nav class="nav" :class="{retracted: isRetracted}" @mouseenter="!isMobile && showNav()" @mouseleave="!isMobile && scheduleHide()">
      
         <router-link to="/" class="item">Home</router-link>
         <router-link to="/register" class="item" v-if="!isLoggedIn">Register</router-link>
@@ -77,7 +77,7 @@ const showNav = () => {
 };
 
 const scheduleHide = () => {
-  if(isMobile) return
+  if(isMobile.value) return
   clearTimeout(timeoutId);
   timeoutId = setTimeout(() => {
     isRetracted.value = true;
@@ -96,6 +96,13 @@ const isMobile = ref(window.innerWidth <= 768)
 
 const handleResize = () => {
   isMobile.value = window.innerWidth <= 768
+
+  if (isMobile.value) {
+    isRetracted.value = true
+    clearTimeout(timeoutId)
+  } else {
+    scheduleHide()
+  }
 }
 
 onMounted(()=> {
@@ -112,7 +119,11 @@ onMounted(()=>{
   } else {
     isRetracted.value = true
   }
-})
+});
+
+const toggleNav = () =>{
+  isRetracted.value = !isRetracted.value
+}
 
 </script>
 
@@ -237,6 +248,10 @@ nav {
   font-size: 28px;
   color: white;
   cursor: pointer;
+  position: fixed;
+  top: 12px;
+  left: 16px;
+  z-index: 1100;
 }
 
 /* Mobile */
@@ -246,6 +261,8 @@ nav {
     flex-direction: column;
     height: auto;
     padding: 1em 0;
+    top: 60px;
+    width: 90%;
   }
 
   .hamburger {
@@ -258,7 +275,7 @@ nav {
   }
 
   .nav.retracted {
-    transform: translate(-50%, -150%);
+    transform: translate(-50%, -200%);
     opacity: 0;
   }
 }
