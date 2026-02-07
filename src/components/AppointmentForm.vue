@@ -40,20 +40,8 @@
 <p v-else-if="date">
   No available slots for this day.
 </p>
-
-
-    <!--Appointment duration-->
-    <label>
-        Appointment Duration:
-        <input v-model.number="durationHours" type="number" min="0" placeholder="Hours" /> :
-        <input v-model.number="durationMinutes" type="number" min="0" max="59" placeholder="Minutes" />
-    </label>
-
-    <!--Displaying the time the appointment should end-->
-    <p v-if="formattedEndTime">Your appointment will end at: {{ formattedEndTime }}</p>
-
     <!--New Category dropdown-->
-    <label>
+<label>
         Category: 
         <select v-model="selectedCategory" required>
             <option disabled value="">-- Select Category --</option>
@@ -61,8 +49,7 @@
                 {{ category }}
             </option>
         </select>
-    </label>
-
+</label>
     <!--Service-->
     <label v-if="selectedCategory">
         Service: 
@@ -78,7 +65,7 @@
         </select>
     </label>
 
-<!--Visit type-->
+    <!--Visit type-->
     <label>
         Visit Type:
         <select v-model='visitType' required >
@@ -88,6 +75,17 @@
         </select>
     </label>
     
+
+    <!--Appointment duration-->
+    <label>
+        Appointment Duration:
+        <input v-model.number="durationHours" type="number" min="0" placeholder="Hours" /> :
+        <input v-model.number="durationMinutes" type="number" min="0" max="59" placeholder="Minutes" />
+    </label>
+
+
+    <!--Displaying the time the appointment should end-->
+    <p v-if="formattedEndTime">Your appointment will end at: {{ formattedEndTime }}</p>
     <!--Submit-->
     <button class="submit-btn" type='submit' 
     :disabled="!isFormValid">
@@ -151,6 +149,8 @@ const generateAvailableSlots = () => {
     const endOfDay = new Date(baseDate)
     endOfDay.setHours(CLOSE_HOUR, 0 , 0 , 0)
 
+    const now = new Date()
+
     while (current < endOfDay) {
         const slotStart = new Date(current)
         const slotEnd = new Date(
@@ -158,6 +158,14 @@ const generateAvailableSlots = () => {
         )
 
     if (slotEnd > endOfDay) break
+
+    //Supposed to prevent past-time slots for the day
+    if (
+        slotStart < now && baseDate.toLocaleDateString() == now.toDateString()
+    ) {
+        current = new Date(current.getTime() + SLOT_MINUTES * 60000)
+        continue
+    }
 
     //Check if the slot overlaps with any existing booking
     const isBooked = dayBookings.value.some(booking => overlapsWithService(slotStart, booking))
@@ -170,7 +178,32 @@ const generateAvailableSlots = () => {
 
     current = new Date(current.getTime() + SLOT_MINUTES * 60000)
     }
+
+   
 }
+
+
+//Function to load the bookings for the day
+const loadBookingsForDay = async () => {
+    if (!date.value) return
+
+    const snapshot = await getDocs(collection(db, 'bookings'))
+
+    const selectedDay = new Date(`${date.value}T00:00:00`)
+
+    dayBookings.value = snapshot.docs.map(d => d.date())
+    .filter(b => {
+        if (!b.date?.toDate) return false
+        const bookingDate = b.date.toDate()
+        return bookingDate.toDateString() === selectedDay.toDateString()
+    })
+}
+
+//Watch for the loadBookingsForDay function
+watch(date, async () => {
+    await loadBookingsForDay()
+    generateAvailableSlots()
+})
 
 //Watchers for the slot function
 watch(date, generateAvailableSlots)
@@ -238,11 +271,25 @@ onMounted(async () =>{
 
 watch(selectedService, (service) => {
     //updating duration based on selected service
-    if (!service && !service.duration) return;
+    if (!service || !service.duration) return;
         durationHours.value = Math.floor(service.duration / 60);
         durationMinutes.value = service.duration % 60;
     
 });
+
+    //This is the logic to render the available booking slots
+    const selectSlot = (slot) =>{
+        if (!slot.available) return
+        time.value = slot.start.toTimeString().slice(0, 5)
+    }
+
+    const formatTime = (date) => {
+        return date.toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit'
+        })
+    }
+    
 
 
 
@@ -335,7 +382,6 @@ const handleSubmit = async() => {
     }
 
 
-    
 };
 
 </script>
