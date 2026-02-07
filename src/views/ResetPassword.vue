@@ -3,7 +3,7 @@
         <h1>Reset Password</h1>
         <p>Enter your email to receive a password reset link.</p>
 
-        <input
+        <input class="form-input"
             type="email"
             v-model="email"
             placeholder="Email"
@@ -50,5 +50,13 @@ const resetPassword = async () => {
 </script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
+
+h1{
+    align-items: center;
+}
+.reset-password{
+    display: flex;
+    position: relative;
+}
 
 </style>

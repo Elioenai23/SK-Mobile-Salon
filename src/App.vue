@@ -43,6 +43,15 @@ import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import router from './router';
 import { db } from './firebase';
 
+const AUTO_HIDE_DELAY = 2500;
+
+const startAutoHide = () => {
+  clearTimeout(timeoutId)
+  timeoutId = setTimeout(()=>{
+    isRetracted.value = true
+  }, AUTO_HIDE_DELAY)
+}
+
 const isLoggedIn = ref(false);
 
 let auth;
@@ -81,7 +90,7 @@ const scheduleHide = () => {
   clearTimeout(timeoutId);
   timeoutId = setTimeout(() => {
     isRetracted.value = true;
-  }, 4000);
+  }, 3000);
 };
 onBeforeUnmount(() => {
   clearTimeout(timeoutId);
@@ -91,7 +100,7 @@ onMounted(() => {
   scheduleHide();
 });
 
-//mobile logic
+//This entire block of code is for the mobile view of the app
 const isMobile = ref(window.innerWidth <= 768)
 
 const handleResize = () => {
@@ -123,6 +132,12 @@ onMounted(()=>{
 
 const toggleNav = () =>{
   isRetracted.value = !isRetracted.value
+
+  if(!isRetracted.value){
+    startAutoHide()
+  } else {
+    clearTimeout(timeoutId)
+  }
 }
 
 </script>
@@ -254,7 +269,7 @@ nav {
   z-index: 1100;
 }
 
-/* Mobile */
+/* Mobile screen  */
 @media (max-width: 768px) {
   .nav {
     width: 90%;
