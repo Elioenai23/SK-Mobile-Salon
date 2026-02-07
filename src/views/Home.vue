@@ -9,7 +9,7 @@
 
         <!--image section-->
         <section class="transform-img">
-            <img src="" />
+            <img src="../assets/placeholder.jpg" />
         </section>
     </section>
     
@@ -170,7 +170,7 @@ const goToPortfolio = () => {
     position: absolute;
     width: 130%;
     bottom: 0;
-    z-index: 9999;
+    z-index: -9999;
     display: flex;
 }
 

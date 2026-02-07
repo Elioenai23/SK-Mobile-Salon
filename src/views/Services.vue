@@ -5,7 +5,7 @@
         
         <!--The Image-->
         <section class="first-img">
-            <img>
+            <img src="../assets/placeholder.jpg">
         </section>
     </section>
 

@@ -7,16 +7,17 @@
         </section>
     </section>
 
+    <section class="gallery-section">
     <div class="gallery">
-        <img src="" alt="">
-        <img src="" alt="">
+        <img src="../assets/portfolio-1.jpg" alt="">
+        <img src="../a" alt="">
         <img src="" alt="">
         <img src="" alt="">
         <img src="" alt="">
         <img src="" alt="">
         <img src="" alt="">
     </div>
-
+</section>
     <!--Discount section-->
     <section class="discount-section">
         <div class="img">
