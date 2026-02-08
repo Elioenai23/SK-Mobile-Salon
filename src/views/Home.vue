@@ -9,7 +9,7 @@
 
         <!--image section-->
         <section class="transform-img">
-            <img src="../assets/placeholder.jpg" />
+            <img src="/public/background180.svg" />
         </section>
     </section>
     
@@ -157,7 +157,7 @@ const goToPortfolio = () => {
     position: absolute;
     width: 130%;
     bottom: 0;
-    z-index: -2;
+    z-index: 9999;
     display: flex;
 }
 

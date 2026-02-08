@@ -5,7 +5,7 @@
 
         <!--Image-->
         <section class="transform-img">
-            <img src="" alt="" >
+            <img src="/public/background180.svg" alt="" >
         </section>
     </section>
     <section class="about-me">
