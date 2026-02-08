@@ -9,13 +9,14 @@
 
     <section class="gallery-section">
     <div class="gallery">
-        <img src="../assets/portfolio-1.jpg" alt="">
-        <img src="../a" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
+        <img src="../assets/portfolio-1.jpg" width="300" height="350" alt="">
+        <img src="../assets/portfolio-3.jpg" width="300" height="400">
+        <video :src="videoSource" controls width="300" height="400"></video>
+        <img src="../assets/portfolio-4.jpg" width="300" height="350" alt="">
+        <img src="../assets/portfolio-7.jpg" width="300" height="400" alt="">
+        <video :src="videoSource2" controls width="300" height="350"></video>
+        <img src="../assets/portfolio-9.jpg"  width="300" height="400" alt=" ">
+        <video :src="videoSource3" controls width="300" height="350"></video>
     </div>
 </section>
     <!--Discount section-->
@@ -81,6 +82,18 @@
     </section>
 </template>
 
+<script setup>
+import { ref } from 'vue';
+import portfolioVideo from '../assets/portfolio-5.mp4'
+import portfolioVideo2 from '../assets/portfolio-6.mp4'
+import portfolioVideo3 from '../assets/portfolio-8.mp4'
+
+
+const videoSource = ref(portfolioVideo)
+const videoSource2= ref(portfolioVideo2)
+const videoSource3 = ref(portfolioVideo3)
+</script>
+
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
 
@@ -110,6 +123,7 @@
 
 .first-section {
     padding: 12rem 0% 15rem;
+    position: relative;
 }
 
 .first-section::before {
@@ -120,7 +134,7 @@
     width: 100%;
     height: 100%;
     /* background-color: var(--global-color-2); */
-    background-image: url("../img/serviceBackGround.jpg");
+    background-image: url("../assets/placeholder.jpg");
     z-index: -1;
     opacity: .7;
     background-position: center;
@@ -143,9 +157,22 @@
     flex-wrap: wrap;
 }
 
-.discount-section {
-    padding: 5rem 5%;
+.gallery img {
+    width: 100%;
+    height: auto;
+    display: block; 
+} 
+
+.gallery video{
+    object-fit: cover;
+    width: 100%;
+    height: 400px;
 }
+
+
+/*.discount-section {
+    padding: 5rem 5%;
+} */
 
 .before-after {
     display: grid;
@@ -157,6 +184,7 @@
 
 .before-after .grid-box {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
 }
 

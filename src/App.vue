@@ -142,7 +142,7 @@ const toggleNav = () =>{
 
 </script>
 
-<style scoped>
+<style>
 *{
     padding: 0;
     margin: 0;
@@ -215,7 +215,7 @@ nav {
   transition: transform 0.3s ease-in-out ;
 }
 
-.item a {
+.item {
   position: relative;
   user-select: none;
   font-size: 20px;
@@ -237,12 +237,12 @@ nav {
   transition: 400ms cubic-bezier(0.7, -0.6, 0.3, 1.2) transform;
 }
 
-.item a:hover {
+.item:hover {
   text-shadow: 1px 1px 1px #000;
   letter-spacing: 5px;
 }
 
-.item a:hover:before {
+.item:hover:before {
   transform: scaleX(1);
 }
 .signout-btn {

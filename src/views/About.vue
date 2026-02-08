@@ -97,7 +97,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("");
+    background-image: url("../assets/placeholder.jpg");
     z-index: -1;
     opacity: .7;
     background-position: center;
@@ -111,6 +111,7 @@
     font-family: var(--font-02);
 }
 
+/* second section */
 .about-me{
     padding: 2.5rem 5%;
     display: flex;

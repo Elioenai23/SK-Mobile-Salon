@@ -72,6 +72,7 @@ const goToPortfolio = () => {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
+ 
 
 /*--First Section-- */
 .first-section {
@@ -98,7 +99,7 @@ const goToPortfolio = () => {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url();
+    background-image: url(../assets/placeholder.jpg);
     z-index: -1;
     opacity: .7;
     background-position: center;
@@ -132,45 +133,31 @@ const goToPortfolio = () => {
     margin-top: 3rem;
     display: flex;
     gap: 2rem;
-}
-
-.first-section .front-page .btn a {
     border-radius: 7px;
     padding: 17px 30px;
     text-decoration: none;
-}
-
-.first-section .front-page .btn a:nth-child(1) {
-    border: 1px solid var(--global-color-0);
-    background-color: var(--global-color-0);
-    color: var(--global-color-4);
-    transition: all .4s ease;
-}
-
-.first-section .front-page .btn a:nth-child(1):hover {
-    border: 1px solid var(--global-color-1);
-    background-color: var(--global-color-1);
-}
-
-.first-section .front-page .btn a:nth-child(2) {
     border: 1px solid var(--global-color-0);
     background-color: var(--global-color-4);
     color: var(--global-color-0);
     transition: all .4s ease;
 }
 
-.first-section .front-page .btn a:nth-child(2):hover {
-    border: 1px solid var(--global-color-4);
+.first-section .front-page .btn:hover {
+    border: 1px solid var(--global-color-1);
     background-color: var(--global-color-1);
-    color: var(--global-color-4);
 }
+
+
+
+
+
 
 .transform-img {
     padding: 0;
     position: absolute;
     width: 130%;
     bottom: 0;
-    z-index: -9999;
+    z-index: -2;
     display: flex;
 }
 
