@@ -101,10 +101,10 @@ onMounted(() => {
 });
 
 //This entire block of code is for the mobile view of the app
-const isMobile = ref(window.innerWidth <= 768)
+const isMobile = ref(window.innerWidth <= 1200)
 
 const handleResize = () => {
-  isMobile.value = window.innerWidth <= 768
+  isMobile.value = window.innerWidth <= 1200
 
   if (isMobile.value) {
     isRetracted.value = true
@@ -142,7 +142,7 @@ const toggleNav = () =>{
 
 </script>
 
-<style>
+<style scoped>
 *{
     padding: 0;
     margin: 0;
@@ -270,7 +270,7 @@ nav {
 }
 
 /* Mobile screen  */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .nav {
     width: 90%;
     flex-direction: column;
