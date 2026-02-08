@@ -99,7 +99,7 @@ const goToPortfolio = () => {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(../assets/placeholder.jpg);
+    background-image: url(/public/placeholder.jpg);
     z-index: -1;
     opacity: .7;
     background-position: center;
@@ -147,27 +147,6 @@ const goToPortfolio = () => {
     background-color: var(--global-color-1);
 }
 
-
-
-
-
-
-.transform-img {
-    padding: 0;
-    position: absolute;
-    width: 130%;
-    bottom: 0;
-    z-index: 9999;
-    display: flex;
-}
-
-.transform-img img {
-    transform: rotate(180deg);
-    z-index: 2;
-    width: 100%;
-    position: relative;
-    bottom: -1px;
-}
 
 /* --Second Section-- */
 .second-section {

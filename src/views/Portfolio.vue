@@ -3,19 +3,19 @@
         <h1>Portfolio</h1>
 
         <section class="transform-img">
-            <img src="" alt="">
+            <img src="/public/background180.svg" alt="">
         </section>
     </section>
 
     <section class="gallery-section">
     <div class="gallery">
-        <img src="../assets/portfolio-1.jpg" width="300" height="350" alt="">
-        <img src="../assets/portfolio-3.jpg" width="300" height="400">
+        <img src="/public/portfolio-1.jpg" width="300" height="350" alt="">
+        <img src="/public/portfolio-3.jpg" width="300" height="400">
         <video :src="videoSource" controls width="300" height="400"></video>
-        <img src="../assets/portfolio-4.jpg" width="300" height="350" alt="">
-        <img src="../assets/portfolio-7.jpg" width="300" height="400" alt="">
+        <img src="/public/portfolio-4.jpg" width="300" height="350" alt="">
+        <img src="/public/portfolio-7.jpg" width="300" height="400" alt="">
         <video :src="videoSource2" controls width="300" height="350"></video>
-        <img src="../assets/portfolio-9.jpg"  width="300" height="400" alt=" ">
+        <img src="/public/portfolio-9.jpg"  width="300" height="400" alt=" ">
         <video :src="videoSource3" controls width="300" height="350"></video>
     </div>
 </section>
@@ -84,9 +84,9 @@
 
 <script setup>
 import { ref } from 'vue';
-import portfolioVideo from '../assets/portfolio-5.mp4'
-import portfolioVideo2 from '../assets/portfolio-6.mp4'
-import portfolioVideo3 from '../assets/portfolio-8.mp4'
+import portfolioVideo from '/public/portfolio-5.mp4'
+import portfolioVideo2 from '/public/portfolio-6.mp4'
+import portfolioVideo3 from '/public/portfolio-8.mp4'
 
 
 const videoSource = ref(portfolioVideo)
@@ -97,33 +97,15 @@ const videoSource3 = ref(portfolioVideo3)
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins' sans-serif;
-    overflow-x: hidden;
-}
 
-:root {
-    --font-01: 'Poppins', sans-serif;
-    --font-02: 'Philosopher', sans-serif;
 
-    /* color  */
-    --global-color-0: #e41345;
-    --global-color-1: #f70077;
-    --global-color-2: #1a1a1a;
-    --global-color-3: #3e4359;
-    --global-color-4: #f7f7f7;
-    --global-color-5: #fff;
-    --global-color-6: #243673;
-    --global-color-7: #BFD1FF;
 
-}
+
 
 .first-section {
     padding: 12rem 0% 15rem;
     position: relative;
+    background-image: url(/public/placeholder.jpg);
 }
 
 .first-section::before {
