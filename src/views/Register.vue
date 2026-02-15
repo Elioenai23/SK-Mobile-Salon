@@ -16,6 +16,7 @@
 
     <!--Google sign in-->
     <p><button @click="signInWithGoogle" class="google-btn">Sign In With Google</button></p>
+    <p>Already have an account? <router-link to="/sign-in">Login</router-link></p>
    </section>
 </template>
 
@@ -110,17 +111,27 @@ const signInWithGoogle = () => {
 .google-btn{
     margin: 1em;
     border-radius: 2em;
-    padding: 0.3em 1em;
+    padding: 0.3em 3.4em;
     font-size: 0.9em;
     box-sizing: border-box;
+    outline:none;
+    text-decoration: none;
+    border:none;
+    background-color: blue;
+}
+
+.submit-btn:disabled{
+    border:none;
+    background-color:aliceblue;
 }
 
 .submit-btn{
     margin: 0.5em;
     border-radius: 2em;
-    padding: 0.4em 1em;
-    box-sizing: border-box;
+    padding: 0.4em 7em;
     font-size: 0.8em;
+    border:none;
+    background-color: pink;
 }
 
 .pw-field {

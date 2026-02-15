@@ -4,6 +4,12 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
+    
+}
+
+body {
+    color: black;
+    font-family: 'Poppins', sans-serif;
 }
 :root {
     --font-01: 'Poppins', sans-serif;
@@ -21,7 +27,19 @@
 
 }
 
-@media (max-width: 768px) {
-    
+.transform-img {
+    padding: 0;
+    position: absolute;
+    width: 130%;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+}
 
+.transform-img img {
+    transform: rotate(180deg);
+    z-index: 2;
+    width: 100%;
+    position: relative;
+    bottom: -1px;
 }

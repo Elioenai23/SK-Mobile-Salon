@@ -2,7 +2,7 @@
    <div class="password-validation">
     <p v-if="error" style="color:red;">{{ error }}</p>
     <p v-if="confirmPassword && matchError" style="color:red;">{{ matchError }}</p>
-    <p v-if="passwordsMatch && !error" style="color:green;">Passwords match</p>
+
    </div>
 </template>
 

@@ -99,7 +99,7 @@ const goToPortfolio = () => {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(/public/placeholder.jpg);
+    background-image: url(/placeholder.jpg);
     z-index: -1;
     opacity: .7;
     background-position: center;

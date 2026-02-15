@@ -30,7 +30,7 @@
 
  <footer class="footer">
     <div class="f-box">Copyright &copy; 2025</div>
-    <div>Powered by <a href="https://vuejs.org"></a> Vue.js</div>
+    <div>Powered by <a href="https://vuejs.org">Vue.js</a></div>
  </footer>
 
 </template>
@@ -152,10 +152,12 @@ const toggleNav = () =>{
 header{
   height: 0;
 }
-a {
-  text-decoration: none;
+
+
+.nav a {
+  color:#fff;
+    text-decoration: none;
   text-shadow: 4px 4px 4px #000;
-  color: #fff;
   letter-spacing: 2px;
   transition: 400ms cubic-bezier(0.7, -0.6, 0.3, 1.2) text-shadow,
     400ms cubic-bezier(0.7, -0.6, 0.3, 1.2) letter-spacing;
@@ -183,16 +185,17 @@ nav {
 }
 
 .nav {
-  width: 50%;
+  width: 65%;
   list-style: none;
   display: flex;
   justify-content: space-around;
+  max-width: 1100px;
   align-items: center;
   position: fixed;
   padding: 10 2em;
-   background: #f70077;
-   z-index: 1000;  
-   transition:transform 900ms cubic-bezier(0.16, 1, 0.3, 1), opacity 600ms ease-out;
+  background: #f70077;
+  z-index: 1000;  
+  transition:transform 900ms cubic-bezier(0.16, 1, 0.3, 1), opacity 600ms ease-out;
    
     
 
@@ -221,7 +224,7 @@ nav {
   font-size: 20px;
   text-transform: uppercase;
   cursor: pointer;
-  margin: 0 20px;
+  margin: 0;
 }
 
 .item a:before {
@@ -272,12 +275,11 @@ nav {
 /* Mobile screen  */
 @media (max-width: 1200px) {
   .nav {
-    width: 90%;
+    width: 85%;
+    max-width: 420px;
     flex-direction: column;
     height: auto;
-    padding: 1em 0;
     top: 60px;
-    width: 90%;
   }
 
   .hamburger {
@@ -301,18 +303,24 @@ nav {
   }
 }
 
+
+
 footer {
     background-color: var(--global-color-2);
-    color: var(--global-color-5);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    position: fixed;
+    position:fixed;
     bottom: 0;
     width: 100%;
+    z-index: 2000;
+    color:white;
 }
 
+.footer a{
+  color:white;
+}
 
 
 

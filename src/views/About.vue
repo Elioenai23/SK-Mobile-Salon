@@ -5,12 +5,14 @@
 
         <!--Image-->
         <section class="transform-img">
-            <img src="/public/background180.svg" alt="" >
+            <img src="/background180.svg" alt="" >
         </section>
     </section>
+
+    <!--second section-->
     <section class="about-me">
         <span class="img">
-            <img src="" alt="" >
+            <img src="/placeholder.jpg" alt="" >
         </span>
 
         <div class="info">
@@ -30,7 +32,9 @@
             <h2>Snoza Khoza</h2>
 
             <div class="icon-link">
+                <i class="fa-solid fa-phone">
                     <p>+27 78 727 6711</p>
+                </i>
                 <i class="fa-solid fa-envelope">
                     <a href="#">snozakhozasno@gmail.com</a>
                 </i>
@@ -45,10 +49,11 @@
             <div class="t-heading">We Have Solutions</div>
             <div class="t-lines">This is where you can introduce the experts in your team.</div>
         </div>
+
         <div class="team-img-info">
             <div class="box">
                 <div class="img">
-                    <img src="" alt="">
+                    <img src="/placeholder.jpg" alt="">
                 </div>
                 <div class="t-name">Snoza Khoza</div>
                 <div class="t-position">Owner</div>
@@ -62,8 +67,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
 
 
+
 .first-section {
      padding: 12rem 0% 15rem;
+     position: relative;
 }
 
 .first-section::before {
@@ -73,7 +80,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("../assets/placeholder.jpg");
+    background-image: url("/placeholder.jpg");
     z-index: -1;
     opacity: .7;
     background-position: center;
@@ -166,6 +173,11 @@
 .team-info .team-text .t-team {
     font-family: var(--font-02);
     font-weight: 400;
+    justify-content: center;
+}
+
+.t-team{
+    justify-content: center;
 }
 
 .team-info .team-text .t-heading {

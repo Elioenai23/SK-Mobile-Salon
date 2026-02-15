@@ -4,8 +4,8 @@
         <h1>Services</h1>
         
         <!--The Image-->
-        <section class="first-img">
-            <img src="../assets/placeholder.jpg">
+        <section class="transform-img">
+            <img src="/public/background180.svg">
         </section>
     </section>
 
@@ -139,6 +139,7 @@ console.log(AppointmentForm)
 
 .first-section {
     padding: 12rem 0% 15rem;
+    position: relative;
 }
 
 .first-section::before {
@@ -148,7 +149,7 @@ console.log(AppointmentForm)
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url();
+    background-image: url(/public/placeholder.jpg);
     z-index: -1;
     opacity: .7;
     background-position: center;
