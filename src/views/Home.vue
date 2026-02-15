@@ -16,10 +16,10 @@
     <!-- second section -->
      <section class="second-section">
          <div class="four-img">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
+            <img src="/placeholder.jpg" alt="">
+            <img src="/placeholder.jpg" alt="">
+            <img src="/placeholder.jpg" alt="">
+            <img src="/placeholder.jpg" alt="">
         </div>
 
 

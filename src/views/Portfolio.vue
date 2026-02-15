@@ -3,19 +3,19 @@
         <h1>Portfolio</h1>
 
         <section class="transform-img">
-            <img src="/public/background180.svg" alt="">
+            <img src="/background180.svg" alt="">
         </section>
     </section>
 
     <section class="gallery-section">
     <div class="gallery">
-        <img src="/public/portfolio-1.jpg" width="300" height="350" alt="">
-        <img src="/public/portfolio-3.jpg" width="300" height="400">
+        <img src="/portfolio-1.jpg" width="300" height="350" alt="">
+        <img src="/portfolio-3.jpg" width="300" height="400">
         <video :src="videoSource" controls width="300" height="400"></video>
-        <img src="/public/portfolio-4.jpg" width="300" height="350" alt="">
-        <img src="/public/portfolio-7.jpg" width="300" height="400" alt="">
+        <img src="/portfolio-4.jpg" width="300" height="350" alt="">
+        <img src="/portfolio-7.jpg" width="300" height="400" alt="">
         <video :src="videoSource2" controls width="300" height="350"></video>
-        <img src="/public/portfolio-9.jpg"  width="300" height="400" alt=" ">
+        <img src="/portfolio-9.jpg"  width="300" height="400" alt=" ">
         <video :src="videoSource3" controls width="300" height="350"></video>
     </div>
 </section>
@@ -73,9 +73,9 @@
 
 <script setup>
 import { ref } from 'vue';
-import portfolioVideo from '/public/portfolio-5.mp4'
-import portfolioVideo2 from '/public/portfolio-6.mp4'
-import portfolioVideo3 from '/public/portfolio-8.mp4'
+import portfolioVideo from '/portfolio-5.mp4'
+import portfolioVideo2 from '/portfolio-6.mp4'
+import portfolioVideo3 from '/portfolio-8.mp4'
 
 
 const videoSource = ref(portfolioVideo)

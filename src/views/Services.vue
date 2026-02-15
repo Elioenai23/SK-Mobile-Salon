@@ -5,11 +5,11 @@
         
         <!--The Image-->
         <section class="transform-img">
-            <img src="/public/background180.svg">
+            <img src="/background180.svg" alt="">
         </section>
     </section>
 
-    <section class="about-section">
+    <section class="about-services">
         <div class="lit-text">Choose From our Collection</div>
         <p class="ser-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro magnam impedit ipsum optio commodi, deserunt nam accusamus molestiae unde, dolore maiores a deleniti dicta nesciunt placeat quaerat quos veniam assumenda?</p>
 
@@ -17,60 +17,61 @@
             <!--Service 1-->
             <div class="box">
                 <div class="img">
-                    <img >
+                    <img src="/services-1.jpg" >
                 </div>
                 <div class="box-info">
-                    <div class="ser-name">Service Name</div>
+                    <div class="ser-name">Nails</div>
                     <p class="ser-description">Description of Service</p>
                 </div>
             </div>
             <!--Service 2-->
             <div class="box">
                 <div class="img">
-                    <img >
+                    <img src="/services-2.jpg" >
                 </div>
                 <div class="box-info">
-                    <div class="ser-name">Service Name</div>
+                    <div class="ser-name">Braids</div>
                     <p class="ser-description">Description of Service</p>
                 </div>
             </div>
             <!--Service 3-->
             <div class="box">
                 <div class="img">
-                    <img >
+                    <img src="/services-3.jpg" >
                 </div>
                 <div class="box-info">
-                    <div class="ser-name">Service Name</div>
+                    <div class="ser-name">Locs</div>
                     <p class="ser-description">Description of Service</p>
                 </div>
             </div>
             <!--Service 4-->
             <div class="box">
                 <div class="img">
-                    <img >
+                    <!--<video :src="sourceVideo" controls width="450" height="400"></video>-->
+                    <img src="/services-5.jpg">
                 </div>
                 <div class="box-info">
-                    <div class="ser-name">Service Name</div>
+                    <div class="ser-name">French Curls</div>
                     <p class="ser-description">Description of Service</p>
                 </div>
             </div>
             <!--Service 5-->
             <div class="box">
                 <div class="img">
-                    <img >
+                    <img src="/services-6.jpg">
                 </div>
                 <div class="box-info">
-                    <div class="ser-name">Service Name</div>
+                    <div class="ser-name">Corn rows</div>
                     <p class="ser-description">Description of Service</p>
                 </div>
             </div>
             <!--Service 6-->
             <div class="box">
                 <div class="img">
-                    <img >
+                    <img src="/services-7.jpg" >
                 </div>
                 <div class="box-info">
-                    <div class="ser-name">Service Name</div>
+                    <div class="ser-name">Knotless braids</div>
                     <p class="ser-description">Description of Service</p>
                 </div>
             </div>
@@ -79,7 +80,7 @@
     </section>
 
     <!--Discount section-->
-    <section class="Discount-section">
+    <!--<section class="discount-section">
         <div class="img">
             <img />
         </div>
@@ -88,10 +89,10 @@
             <h2></h2>
             <p></p>
         </div>
-    </section>
+    </section> -->
 
     <!--Slider-->
-    <section class="img-slider-text">
+   <!-- <section class="img-slider-text">
         <div class="img-slider">
            <img
                 v-for="(image, index) in images"
@@ -99,12 +100,13 @@
                 :src="image"
                 :alt="`Slide ${index + 1}`"
                 :style="{transform: `translateX(-${currentSlide * 100}%)`}"
+                class="slide"
             />
             
             <i class="fa-solid fa-chevron-left prev" @click="goPrev"></i>
             <i class="fa solid fa-chevron-right next" @click="goNext"></i>
         </div>
-    </section> 
+    </section> -->
     
     <section class="appointment-section">
    <AppointmentForm /> 
@@ -114,9 +116,12 @@
 <script setup>
 import AppointmentForm from '../components/AppointmentForm.vue'
 import { ref } from 'vue';
+import serviceVideo from '/services-4.mp4';
 
-const images = ref([
-    
+const sourceVideo = ref(serviceVideo)
+
+/*const images = ref([
+    '/services-1.jpg'
 ]);
 
 const currentSlide = ref(0);
@@ -127,7 +132,7 @@ const goPrev = () => {
 
 const goNext = () => {
     currentSlide.value = (currentSlide.value + 1) % images.value.length
-}
+} */
 
 console.log(AppointmentForm)
 
@@ -149,7 +154,7 @@ console.log(AppointmentForm)
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(/public/placeholder.jpg);
+    background-image: url(/placeholder.jpg);
     z-index: -1;
     opacity: .7;
     background-position: center;
@@ -163,14 +168,14 @@ console.log(AppointmentForm)
     font-family: var(--font-02);
 }
 
-.about-section {
+.about-services {
     padding: 5rem 5%;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.about-section .lit-text {
+.about-services .lit-text {
     font-size: 2rem;
     font-weight: 400;
     font-family: var(--font-02);
@@ -178,23 +183,23 @@ console.log(AppointmentForm)
     color: var(--global-color-1)
 }
 
-.about-section .ser-text{
+.about-services .ser-text{
     text-align: center;
     margin-bottom: 2rem;
 }
-.about-section .ser-box{
+.about-services .ser-box{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     color: #fff;
 }
 
-.about-section .ser-box .box{
+.about-services .ser-box .box{
     position: relative;
     top: 0;
 }
 
-.about-section .ser-box .box::after{
+.about-services .ser-box .box::after{
     content: '';
     position: absolute;
     top: 0;
@@ -208,23 +213,23 @@ console.log(AppointmentForm)
     border-radius: 2%;
 }
 
-.about-section .ser-box .box:hover::after{
+.about-services .ser-box .box:hover::after{
     width: 0;
 }
 
-.about-section .ser-box .box .img {
+.about-services .ser-box .box .img {
      width: 100%;
     height: 100%;
     overflow-y: hidden;
 }
 
-.about-section .ser-box .box .img img{
+.about-services .ser-box .box .img img{
      width: 100%;
     border-radius: 2%;
     height: 100%;
 }
 
-.aboutServices .ser-box .box .box-info {
+.about-services .ser-box .box .box-info {
     position: absolute;
     bottom: 5%;
     left: 3%;
@@ -232,26 +237,33 @@ console.log(AppointmentForm)
 
 }
 
-.about-section .ser-box .box .ser-name {
+.about-services .ser-box .box .ser-name {
     padding-bottom: .8rem;
     font-size: 1.4rem;
     font-weight: 700;
     font-family: var(--font-02);
 }
 
-.about-section .ser-box .box .ser-description {
+.about-services .ser-box .box .ser-description {
     font-family: var(--font-02);
 }
 
-.Discount-section {
+.discount-section {
     padding: 7rem 5%;
     margin-bottom: 4rem;
 }
+.about-services .ser-box .box .img video {
+    width: 100%;
+    height: 100%;
+    border-radius: 2%;
+    object-fit: cover;
+}
 
+/*
 .img-slider-text {
-    /* height: 100vh; */
+     height: 100vh; 
     display: flex;
-    /* align-items: center; */
+    align-items: center; 
     justify-content: center;
     gap: 2rem;
     margin-bottom: 4rem;
@@ -267,6 +279,17 @@ console.log(AppointmentForm)
     padding: 18rem 0;
     margin: 1rem;
 }
+
+.img-slider-text .img-slider .slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    height: 100%;
+    z-index: -1;
+    transition: all .5s ease;
+    top: 0;
+    left: 0;
+} */
 
 .appointment-section {
   padding: 6rem 5%;

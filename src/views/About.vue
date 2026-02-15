@@ -12,7 +12,7 @@
     <!--second section-->
     <section class="about-me">
         <span class="img">
-            <img src="/placeholder.jpg" alt="" >
+            <img src="/snoza.jpg" alt="" >
         </span>
 
         <div class="info">
@@ -53,7 +53,7 @@
         <div class="team-img-info">
             <div class="box">
                 <div class="img">
-                    <img src="/placeholder.jpg" alt="">
+                    <img src="/snoza-3.jpg" alt="">
                 </div>
                 <div class="t-name">Snoza Khoza</div>
                 <div class="t-position">Owner</div>
@@ -156,9 +156,10 @@
     color: var(--global-color-1);
 }
 
-.team-Info {
+.team-info {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
     padding: 3rem 2%;
     text-align: center;
@@ -191,9 +192,10 @@
 
 .team-info .team-img-info {
     display: grid;
-    grid-template-columns: repeat(4, minmax(100px, 300px));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
     gap: 2rem;
-    margin: auto;
+    justify-content: center;
+    width: 100%;
     padding: 2rem;
 }
 
@@ -235,6 +237,7 @@
     overflow-y: hidden;
     margin-top: .7rem;
     padding: .2rem 0;
+    text-align: center;
 
 }
 </style>
