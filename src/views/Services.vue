@@ -78,7 +78,7 @@
             
         </div>      
     </section>
-
+    
     <!--Discount section-->
     <!--<section class="discount-section">
         <div class="img">
@@ -109,16 +109,42 @@
     </section> -->
     
     <section class="appointment-section">
-   <AppointmentForm /> 
+        <button @click="toggleForm">
+            {{ showForm ? "Close Appointment Form" : "Make Appointment" }}
+        </button>
+   <AppointmentForm v-if="canShowForm" /> 
     </section>
 </template>
 
 <script setup>
 import AppointmentForm from '../components/AppointmentForm.vue'
-import { ref } from 'vue';
+import { ref, computed} from 'vue';
 import serviceVideo from '/services-4.mp4';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
 
 const sourceVideo = ref(serviceVideo)
+
+const showForm = ref(false);
+const user = ref(null)
+
+
+const auth = getAuth();
+onAuthStateChanged(auth, (u) => {
+    user.value = u;
+    if (!u) showForm.value = false
+})
+
+const canShowForm = computed(()=> user.value && showForm.value)
+
+
+function toggleForm(){
+    if (!user.value){
+        alert("Please log in to make an appointment");
+        return;
+    } 
+    showForm.value = !showForm.value 
+}
 
 /*const images = ref([
     '/services-1.jpg'

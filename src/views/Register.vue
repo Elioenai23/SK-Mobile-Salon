@@ -119,6 +119,7 @@ const signInWithGoogle = () => {
 .submit-btn {
     width: 100%;
     padding: 0.8rem;
+    margin-top: .8rem;
     border-radius: 25px;
     border: none;
     background-color: pink;

@@ -3,7 +3,7 @@
 
 <!--Password Field-->
 <div class="password-field">
-    <label>
+    <label class="field-wrapper">
         <input
             :type="showPassword ? 'text' : 'password'"
             :placeholder="placeholder"
@@ -53,23 +53,32 @@ const togglePassword = () => {
 </script>
 <style scoped>
 
-.password-field input {
+.password-field {
     width: 100%;
+    max-width: 200px;
+}
+
+.field-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.password-field input {
+    flex: 1;
     padding: 0.8rem;
     border-radius: 8px;
     border: 1px solid #ddd;
-    margin-bottom: 1rem;
     font-size: 0.9rem;
 }
+
 .password-field button {
-    position: absolute;
-    right: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
     border: none;
-    background: none;
+    background: pink;
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 0.8rem;
-    color: pink; 
+    margin: 0.8rem;
 }
 </style>

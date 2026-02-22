@@ -264,7 +264,7 @@ nav {
   background: none;
   border: none;
   font-size: 28px;
-  color: white;
+  color: black;
   cursor: pointer;
   position: fixed;
   top: 12px;
