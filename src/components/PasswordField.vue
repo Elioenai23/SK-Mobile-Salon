@@ -51,3 +51,25 @@ const togglePassword = () => {
 //watch(() => props.modelValue, (val) => (internalValue.value = val));
 
 </script>
+<style scoped>
+
+.password-field input {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.password-field button {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: pink; 
+}
+</style>

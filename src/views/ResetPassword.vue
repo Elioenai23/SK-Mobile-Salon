@@ -9,7 +9,7 @@
             placeholder="Email"
             required
          />
-         <button @click="resetPassword" :disabled="loading">
+         <button class="submit-btn" @click="resetPassword" :disabled="loading">
             {{ loading ? 'Sending...' : 'Send Reset Email' }}
          </button>
          <p v-if="message" class="success">{{ message }}</p>
@@ -51,12 +51,71 @@ const resetPassword = async () => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
 
-h1{
-    align-items: center;
-}
-.reset-password{
+/*.reset-password{
+    font-family: 'Poppins', sans-serif;
+    text-decoration: underline;
+    
+    
+} */
+.reset-password {
+    min-height: 100vh;
     display: flex;
-    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 2rem;
+}
+
+.reset-password > * {
+    width: 100%;
+    max-width: 400px;
+}
+
+
+.reset-password input {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.reset-password h1 {
+ text-align: center;
+    font-size: 5rem;
+    font-family: var(--font-02);  
+    margin: 1em; 
+}
+
+
+.reset-password p {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.submit-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 25px;
+    border: none;
+    background-color: pink;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.submit-btn:hover {
+    opacity: 0.85;
+}
+
+.submit-btn:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
 }
 
 </style>

@@ -32,8 +32,13 @@ const email = ref('')
 const password = ref('')
 const errMsg = ref()
 const router = useRouter()
+const isPasswordValid = ref(false)
 
 const signIn = () => {
+      //  if(!isPasswordValid.value){
+       // console.log("Password is invalid.");
+       // return;
+  //  }
 
     const auth = getAuth()
     signInWithEmailAndPassword(auth, email.value, password.value)
@@ -85,41 +90,77 @@ const signInWithGoogle = () => {
     
     
 }
-.create-account {
-    color: blue;
+.signin-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 2rem;
+}
+
+.signin-section > * {
+    width: 100%;
+    max-width: 400px;
+}
+
+
+.signin-section input {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
 .signin-section h1 {
-     text-align: center;
+ text-align: center;
     font-size: 5rem;
     font-family: var(--font-02);  
     margin: 1em; 
 }
 
-.signin-section {
-     display:flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+
+.signin-section p {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-.signin-section p{
-    margin-left: -2.5em;
+
+.submit-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 25px;
+    border: none;
+    background-color: pink;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
-.google-btn{
-    margin: 1em;
-    border-radius: 2em;
-    padding: 0.3em;
-    font-size: 0.9em;
-    box-sizing: border-box;
+.submit-btn:hover {
+    opacity: 0.85;
 }
 
-.submit-btn{
-    margin: 0.5em;
-    border-radius: 2em;
-    padding: 0.4em 1em;
-    box-sizing: border-box;
-    font-size: 0.8em;
+.submit-btn:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+/* Google button */
+.google-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 25px;
+    border: none;
+    background-color: #4285F4;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
 }
 </style>
