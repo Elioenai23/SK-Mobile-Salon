@@ -91,13 +91,13 @@ const signInWithGoogle = () => {
     
 }
 .signin-section {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background: #f5f5f5;
-    padding: 2rem;
+    padding: 2rem 4rem 6rem;
+    overflow-y: auto;
 }
 
 .signin-section > * {

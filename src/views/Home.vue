@@ -16,8 +16,8 @@
     <!-- second section -->
      <section class="second-section">
          <div class="four-img">
-            <img src="/placeholder.jpg" alt="">
-            <img src="/placeholder.jpg" alt="">
+            <img src="/home-1.jpg" alt="">
+            <img src="/home-2.jpg" alt="">
             <img src="/placeholder.jpg" alt="">
             <img src="/placeholder.jpg" alt="">
         </div>
@@ -159,7 +159,7 @@ const goToPortfolio = () => {
 .second-section .four-img {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    width: 100%;
+    width: 110%;
     height: 100%;
     gap: 1rem;
     padding: 4rem 1rem 12rem;
@@ -184,7 +184,8 @@ const goToPortfolio = () => {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
+    margin-left:2em ;
 }
 
 .second-section .text-info .greet {

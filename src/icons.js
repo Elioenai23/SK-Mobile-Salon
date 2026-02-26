@@ -1,13 +1,14 @@
-//import icons
+// src/icons.js
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-import { faEnvelope,  } from "@fortawesome/free-solid-svg-icons";
+// Solid icons
+import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
+// Brand icons
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
+// Add icons to the library
+library.add(faPhone, faEnvelope, faInstagram);
 
-library.add(faEnvelope, faInstagram, faPhone);
-
-export {FontAwesomeIcon};
+export { FontAwesomeIcon };

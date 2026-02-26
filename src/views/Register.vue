@@ -76,13 +76,13 @@ const signInWithGoogle = () => {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
 
 .register-section {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background: #f5f5f5;
-    padding: 2rem;
+    padding: 2rem 4rem 6rem;
+    overflow-y: auto;
 }
 
 .register-section > * {

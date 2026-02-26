@@ -349,6 +349,7 @@ console.log(AppointmentForm)
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.8rem;
+    margin-bottom: 2em;
 }
 
 a {
