@@ -7,6 +7,8 @@
         </div>
     </div>
     <div>
+
+        
   <form @submit.prevent='handleSubmit'>
     <!--The name for the client-->
     <label>
@@ -191,7 +193,7 @@ const loadBookingsForDay = async () => {
 
     const selectedDay = new Date(`${date.value}T00:00:00`)
 
-    dayBookings.value = snapshot.docs.map(d => d.date())
+    dayBookings.value = snapshot.docs.map(d => d.data())
     .filter(b => {
         if (!b.date?.toDate) return false
         const bookingDate = b.date.toDate()

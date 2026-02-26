@@ -164,4 +164,9 @@ const signInWithGoogle = () => {
     cursor: pointer;
     margin-top: 1rem;
 }
+
+a{
+    text-decoration: underline;
+    color: black;
+}
 </style>

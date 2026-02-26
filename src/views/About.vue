@@ -31,14 +31,26 @@
 
             <h2>Snoza Khoza</h2>
 
-            <div class="icon-link">
-                <i class="fa-solid fa-phone">
-                    <p>+27 78 727 6711</p>
-                </i>
-                <i class="fa-solid fa-envelope">
-                    <a href="#">snozakhozasno@gmail.com</a>
-                </i>
-            </div>
+            
+    <div class="contact-info">
+    <!-- Phone -->
+    <div class="contact-item">
+      <font-awesome-icon icon="phone" /> 
+      <span>+27 78 727 6711</span>
+    </div>
+
+    <!-- Email -->
+    <div class="contact-item">
+      <font-awesome-icon icon="envelope" /> 
+      <a href="mailto:snozakhozasno@gmail.com">snozakhozasno@gmail.com</a>
+    </div>
+
+    <!-- Instagram -->
+    <div class="contact-item">
+      <font-awesome-icon :icon="['fab', 'instagram']" /> 
+      <a href="https://www.instagram.com/snozamobilesalon/" target="_blank">snozamobilesalon</a>
+    </div>
+</div>
         </div>
     </section>
 
@@ -133,17 +145,17 @@
     color: var(--global-color-1);
 }
 
-.about-me .info .icon-link {
+.about-me .info{
     display: flex;
     gap: 2rem;
 }
 
-.about-me .info .icon-link i {
+.about-me .info {
     color: var(--global-color-1);
     overflow-y: hidden;
 }
 
-.about-me .info .icon-link i a {
+.about-me .info {
     padding-left: 10px;
     text-decoration: none;
     color: black;
@@ -152,7 +164,7 @@
 }
 
 
-.about-me .info .icon-link i a:hover {
+.about-me .info:hover {
     color: var(--global-color-1);
 }
 
@@ -239,5 +251,35 @@
     padding: .2rem 0;
     text-align: center;
 
+}
+
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-01);
+}
+
+.contact-item font-awesome-icon {
+  color: var(--global-color-1);
+  width: 24px;
+  height: 24px;
+}
+
+.contact-item a {
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: var(--global-color-1);
 }
 </style>

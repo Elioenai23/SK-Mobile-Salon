@@ -109,10 +109,19 @@
     </section> -->
     
     <section class="appointment-section">
-        <button @click="toggleForm">
-            {{ showForm ? "Close Appointment Form" : "Make Appointment" }}
+        <div class="btn-wrapper" v-if="!user">
+            <p class="app-text">To make an Appointment please <router-link to="/sign-in">Sign In </router-link></p>
+        <button @click="toggleForm" class="show-btn" :disabled="!user">
+            Make Appointment
         </button>
-   <AppointmentForm v-if="canShowForm" /> 
+        </div>
+
+        <div v-else class="btn-wrapper">
+            <button class="show-btn" @click="toggleForm">
+                {{ showForm ? "Close Appointment Form" : "Make Appointment" }}
+            </button>
+        </div>
+   <AppointmentForm v-if="canShowForm && user" /> 
     </section>
 </template>
 
@@ -325,4 +334,25 @@ console.log(AppointmentForm)
   background: #fff;
 }
 
+.btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.show-btn{
+    border: none;
+    background: pink;
+    padding: 1rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+a {
+    text-decoration: underline;
+    color: black;
+}
 </style>
