@@ -1,7 +1,7 @@
 <template>
     <section class="first-section">
         <div class="front-page">
-            <div class="address">123, Central Square, New York</div>
+            <div class="address">121 Andringa St, Stellenbosch Central, Stellenbosch</div>
             <h2 class="heading">Sk Mobile Salon</h2>
             <p class="para">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque totam aliquid eaque, quaerat
                 obcaecati enim placeat earum qui illum distinctio!</p>
@@ -9,7 +9,7 @@
 
         <!--image section-->
         <section class="transform-img">
-            <img src="/public/background180.svg" />
+            <img src="/background180.svg" />
         </section>
     </section>
     
@@ -153,7 +153,7 @@ const goToPortfolio = () => {
     padding: 0 2%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 3.5rem;
     align-items: center;
 }
 .second-section .four-img {

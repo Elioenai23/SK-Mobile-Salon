@@ -9,43 +9,16 @@
     <div>
 
         
-  <form @submit.prevent='handleSubmit'>
+  <form @submit.prevent='handleSubmit' class="form">
     <!--The name for the client-->
     <label>
         Name & Surname:
         <input v-model= 'clientName' type='text' required />
     </label>
-    <!--The Date-->
-    <label>
-        Date:
-        <input v-model='date' type='date' required  />
-        
-    </label>
-    <!--Time-->
-   <label v-if="availableSlots.length">
-  Time:
-  <select v-model="time" required>
-    <option disabled value="">-- Select a time --</option>
-
-    <option
-      v-for="slot in availableSlots"
-      :key="slot.start.getTime()"
-      :value="slot.start.toTimeString().slice(0, 5)"
-      :disabled="!slot.available"
-    >
-      {{ slot.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }}
-      <span v-if="!slot.available"> (Booked)</span>
-    </option>
-  </select>
-</label>
-
-<p v-else-if="date">
-  No available slots for this day.
-</p>
     <!--New Category dropdown-->
 <label>
         Category: 
-        <select v-model="selectedCategory" required>
+        <select v-model="selectedCategory" required class="category">
             <option disabled value="">-- Select Category --</option>
             <option v-for="(servicesList, category) in categories" :key="category" :value="category">
                 {{ category }}
@@ -55,7 +28,7 @@
     <!--Service-->
     <label v-if="selectedCategory">
         Service: 
-        <select v-model = 'selectedService' required>
+        <select v-model = 'selectedService' required class="services">
             <option disabled value=" ">-- Select Service</option>
             <option
                 v-for="s in filteredServices"
@@ -76,8 +49,37 @@
             <option value='home'>Home Visit</option>
         </select>
     </label>
-    
+        <!--The Date-->
+    <label>
 
+        Date:
+        <input v-model='date' type='date' required  />
+        
+    </label>
+      <!--Time-->
+    <div v-if="availableSlots.length" class="slots-wrapper">
+  <p>Select a Time:</p>
+
+  <div class="slots-grid">
+    <button
+        type="button"
+      v-for="slot in availableSlots"
+      :key="slot.start.getTime()"
+      :disabled="!slot.available"
+      :class="[
+        'slot-btn',
+        { booked: !slot.available },
+        { selected: time === slot.start.toTimeString().slice(0, 5) }
+      ]"
+      @click="selectSlot(slot)"
+    >
+      {{ formatTime(slot.start) }}
+    </button>
+  </div>
+</div>
+<p v-else-if="date">
+  No available slots for this day.
+</p>
     <!--Appointment duration-->
     <label>
         Appointment Duration:
@@ -394,13 +396,85 @@ const handleSubmit = async() => {
     font-family: 'Poppins', sans-serif;
 }
 
-    .submit-btn{
+.submit-btn:disabled{
+    background-color: #ddd;
+    color: white;
+    border-radius: 20px;
+    padding: 0.8rem;
+}
+
+.submit-btn{
         margin: 1em;
         padding: 0.5em 1em;
-        background-color: #4CAF50;
-        color: white;
+        background-color: pink;
+        color: black;
         border: none;
-        border-radius: 4px;
+        border-radius: px;
         cursor: pointer;
+        padding: 0.8rem;
+        border-radius: 20px;
     }
+
+.form{
+    display: grid;
+    justify-content: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: 500px;
+    margin: 2rem auto;
+     box-shadow: 0 0 17px var(--global-color-2);
+}
+
+.form input {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    
+}
+
+.form select {
+     width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    background-color: white;
+    appearance: none;
+}
+
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.slot-btn {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.slot-btn:hover {
+  background: pink;
+}
+
+.slot-btn.booked {
+  background: #eee;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.slot-btn.selected {
+  background: pink;
+  font-weight: bold;
+}
 </style>

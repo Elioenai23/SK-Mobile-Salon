@@ -273,7 +273,7 @@ nav {
 }
 
 /* Mobile screen  */
-@media (max-width: 1200px) {
+@media (max-width: 1350px) {
   .nav {
     width: 85%;
     max-width: 420px;

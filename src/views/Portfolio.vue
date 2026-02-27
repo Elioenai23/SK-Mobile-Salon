@@ -133,7 +133,15 @@ const videoSource3 = ref(portfolioVideo3)
     height: auto;
     display: block;
     box-shadow: 0 0 17px var(--global-color-2); 
-} 
+}
+
+/* .gallery img:hover{
+      transform: scale(1.1);
+}
+
+.gallery video:hover {
+      transform: scale(1.02);
+} */
 
 .gallery video{
     object-fit: cover;
@@ -143,11 +151,18 @@ const videoSource3 = ref(portfolioVideo3)
 }
 
 .before-after {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fit , minmax(200px , 600px));
     gap: 4rem  1rem;
-    padding: 5rem 2rem; 
-    justify-content: center;
+    padding: 2rem 4rem 6rem; 
+    justify-content: flex;
+    overflow-y: auto;
+}
+
+.before-after .grid-box:hover{
+      transform: scale(1.1);
+      transition: ease .5s;
+    
 }
 
 .before-after .grid-box {

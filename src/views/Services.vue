@@ -204,10 +204,10 @@ console.log(AppointmentForm)
 }
 
 .about-services {
-    padding: 5rem 5%;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: .5rem;
 }
 
 .about-services .lit-text {
@@ -327,11 +327,12 @@ console.log(AppointmentForm)
 } */
 
 .appointment-section {
-  padding: 6rem 5%;
-  margin-top: 4rem;
+  padding: 2rem 4rem 6rem;
+  margin-top: 1rem;
   position: relative;
   z-index: 10;
   background: #fff;
+  overflow-y: auto;
 }
 
 .btn-wrapper {

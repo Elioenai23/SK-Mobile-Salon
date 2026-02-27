@@ -13,7 +13,7 @@
     <p><button @click="signIn" class="submit-btn">Submit</button></p>
     <!--Link to create an account-->
    <p> Don't have an account?
-    <router-link to="/register" class="create-account">Click here</router-link>
+    <router-link to="/register" class="create-account"> Click here</router-link>
    </p>
     <!--Link to password reset page-->
     <p><router-link to="/resetpassword" class="forgot">Forgot password?</router-link></p>

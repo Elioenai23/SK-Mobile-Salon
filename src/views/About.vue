@@ -165,10 +165,12 @@
 .team-info {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
-  padding: 3rem 2%;
+  padding: 2rem 4rem 6rem;
   text-align: center;
+  overflow-y: auto;
 }
 
 .team-info .team-text {
@@ -188,14 +190,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
   gap: 2rem;
-  justify-content: center;
-  width: 100%;
-  padding: 2rem;
-  overflow: hidden;
+  justify-content: flex-start;
+  width: 20%;
+  border-radius: 20px;
+  box-shadow: 0 0 17px var(--global-color-2);
+  overflow-y: hidden;
 }
 
 .team-info .team-img-info .box {
-  overflow: hidden;
   border-radius: 2%;
   box-shadow: 0 0 18px 2px #d1d1d1;
   display: flex;
@@ -207,9 +209,9 @@
 
 .team-info .team-img-info .box .img img {
   width: 100%;
-  height: 100%;
+  height: 100;
   border-radius: 2%;
-  overflow: hidden;
+  
 }
 
 .team-info .team-img-info .box .t-name {
