@@ -1,33 +1,40 @@
-//import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
-import { onSchedule } from 'firebase-functions/scheduler';
-import sgMail from '@sendgrid/mail';
+import { onRequest } from "firebase-functions/v2/https";
+import * as admin from "firebase-admin";
+import sgMail from "@sendgrid/mail";
 
 admin.initializeApp();
 
-export const dailyAppointmentSummary = onSchedule("07 * * *", async()=>{
+sgMail.setApiKey("TEMPORARY_API_KEY");
 
-    const now = new Date();
-
-    const startOfDay = new Date(now);
-    startOfDay.setHours(0, 0, 0, 0);
-
-    const endOfDay = new Date(now);
-    endOfDay.setHours(19, 59, 59, 999);
-
+export const testDailyAppointments = onRequest(async (req, res) => {
+  try {
     const snapshot = await admin.firestore()
-    .collection('bookings')
-    .where("date", ">=", startOfDay)
-    .where("date", "<=", endOfDay)
-    .get();
+      .collection("bookings")
+      .get();
 
-    if (snapshot.empty){
-        console.log("No appointments for today.");
-        return;
-    }
+    let message = "Appointments:\n\n";
 
     snapshot.forEach(doc => {
-        const booking = doc.data();
-        console.log("Booking: ", booking.clientName)
-    })
-})
+      const b = doc.data();
+
+      const time = b.date?.toDate?.().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }) || "Unknown";
+
+      message += `${time} - ${b.clientName} - ${b.serviceType}\n`;
+    });
+
+    await sgMail.send({
+      to: ["festusgart@email.com"],
+      from: "festusgarth@email.com",
+      subject: "Test Appointments",
+      text: message,
+    });
+
+    res.send("Email sent!");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error sending email");
+  }
+});

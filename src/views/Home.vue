@@ -225,6 +225,7 @@ const goToPortfolio = () => {
     gap: 1rem;
     padding: 3rem 2%;
     background-color: #8484840a;
+    margin-bottom: 4em;
 }
 
 .third-section>h2 {
@@ -238,19 +239,28 @@ const goToPortfolio = () => {
 }
 
 .third-section .services-box{
-margin-top: 1rem;
+    margin-top: 2rem;
     display: grid;
-    grid-template-columns: repeat(4, minmax(100px, 280px));
+    grid-template-columns: repeat(4, minmax(150px, 300px));
     gap: 2rem;
     padding: 1rem;
     justify-content: center;
 }
 
 .third-section .services-box .box {
-      padding: 3rem 1rem 1rem;
-    box-shadow: 0 0 8px 3px #eeeeee;
+    padding: 3rem 1rem 1rem;
+    background-color: #fafafa;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     background-color: #fff;
-    border-radius: 7px;
+    overflow: hidden;
+    border-radius: 5%;
+}
+
+.third-section .services-box .box:hover {
+ transform: scale(1.1);
+ transition: ease .5s;
+ box-shadow: 0 4px 12px rgb(0, 0, 0);
+ border-radius: 5%;
 }
 
 .third-section .services-box .box h2{

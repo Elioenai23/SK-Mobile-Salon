@@ -357,4 +357,8 @@ a {
     text-decoration: underline;
     color: black;
 }
+.app-text {
+    margin-top: 2px;
+    margin-bottom: 2em;
+}
 </style>
