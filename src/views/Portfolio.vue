@@ -1,71 +1,58 @@
 <template>
-    <section class="first-section">
-        <h1>Portfolio</h1>
-
-        <section class="transform-img">
-            <img src="/background180.svg" alt="">
-        </section>
+    <section class="portfolio-hero">
+        <img src="/portfolio-9.jpg" alt="" class="portfolio-hero-img" />
+        <div class="portfolio-hero-scrim"></div>
+        <div class="portfolio-hero-content">
+            <p class="eyebrow">Recent work</p>
+            <h1>Portfolio</h1>
+        </div>
     </section>
 
-    <section class="gallery-section">
-    <div class="gallery">
-        <img src="/portfolio-1.jpg" width="300" height="350" alt="">
-        <img src="/portfolio-3.jpg" width="300" height="400">
-        <video :src="videoSource" controls width="300" height="400"></video>
-        <img src="/portfolio-4.jpg" width="300" height="350" alt="">
-        <img src="/portfolio-7.jpg" width="300" height="400" alt="">
-        <video :src="videoSource2" controls width="300" height="350"></video>
-        <img src="/portfolio-9.jpg"  width="300" height="400" alt=" ">
-        <video :src="videoSource3" controls width="300" height="350"></video>
-    </div>
-</section>
-    <!--Discount section-->
-    <section class="discount-section">
-        <div class="img">
-            <img >
-        </div>
+    <svg class="braid-divider on-dark" viewBox="0 0 400 28" preserveAspectRatio="none">
+        <path d="M0 14 Q 20 0, 40 14 T 80 14 T 120 14 T 160 14 T 200 14 T 240 14 T 280 14 T 320 14 T 360 14 T 400 14" />
+        <path d="M0 14 Q 20 28, 40 14 T 80 14 T 120 14 T 160 14 T 200 14 T 240 14 T 280 14 T 320 14 T 360 14 T 400 14" />
+    </svg>
 
-        <div class="text-info">
-            <h2></h2>
-            <p></p>
+    <section class="gallery-section">
+        <div class="gallery">
+            <img src="/portfolio-1.jpg" alt="">
+            <img src="/portfolio-3.jpg" alt="">
+            <video :src="videoSource" controls></video>
+            <img src="/portfolio-4.jpg" alt="">
+            <img src="/portfolio-7.jpg" alt="">
+            <video :src="videoSource2" controls></video>
+            <img src="/portfolio-9.jpg" alt="">
+            <video :src="videoSource3" controls></video>
         </div>
     </section>
 
     <!--Before and After Section-->
     <section class="before-after">
+        <p class="eyebrow" style="text-align:center;">Transformations</p>
+        <h2>Before and after</h2>
+        <p class="ba-intro">Placeholder copy &mdash; swap these placeholder photos for real before/after pairs once you have them.</p>
 
-        <div class="grid-box">
-            <div class="box">
-                <div class="img">
+        <div class="ba-grid">
+            <div class="ba-pair">
+                <div class="ba-box">
                     <img src="/placeholder.jpg" alt="">
+                    <span class="ba-label">Before</span>
                 </div>
-                <div class="text">Before</div>
-            </div>
-
-            <!---->
-            <div class="box">
-                <div class="img">
-                    <img src="/placeholder.jpg">
-                </div>
-                <div class="text">After</div>
-            </div>
-            <!---->
-        </div>
-
-        <!---->  
-        <div class="grid-box">
-            <div class="box">
-                <div class="img">
+                <div class="ba-box">
                     <img src="/placeholder.jpg" alt="">
+                    <span class="ba-label">After</span>
                 </div>
-                <div class="text">Before</div>
             </div>
 
-            <div class="box">
-                <div class="img">
-                    <img src="/placeholder.jpg">
+            <div class="ba-pair">
+                <div class="ba-box">
+                    <img src="/placeholder.jpg" alt="">
+                    <span class="ba-label">Before</span>
                 </div>
-                <div class="text">After</div>
+                <div class="ba-box">
+                    <img src="/placeholder.jpg" alt="">
+                    <span class="ba-label">After</span>
+                </div>
             </div>
         </div>
     </section>
@@ -84,122 +71,136 @@ const videoSource3 = ref(portfolioVideo3)
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
-
-
-
-
-
-
-.first-section {
-    padding: 12rem 0% 15rem;
+.portfolio-hero {
     position: relative;
+    min-height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.first-section::before {
-    content: '';
+.portfolio-hero-img {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    /* background-color: var(--global-color-2); */
-    background-image: url("/placeholder.jpg"); 
-    z-index: -1;
-    opacity: .7;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    object-fit: cover;
 }
 
-.first-section h1 {
+.portfolio-hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(27, 17, 20, 0.72);
+}
+
+.portfolio-hero-content {
+    position: relative;
+    z-index: 2;
     text-align: center;
-    font-size: 5rem;
-    font-family: var(--font-02);
+    color: var(--cream);
+}
+
+.portfolio-hero-content h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 6vw, 4rem);
+    margin-top: 0.5rem;
+}
+
+.gallery-section {
+    padding: 4rem 4vw;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 .gallery {
-    margin: 5rem 2%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    
+    columns: 4 240px;
+    column-gap: 1rem;
 }
 
-.gallery img {
+.gallery img,
+.gallery video {
     width: 100%;
-    height: auto;
     display: block;
-    box-shadow: 0 0 17px var(--global-color-2); 
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    break-inside: avoid;
+    transition: opacity 0.3s ease;
 }
 
-/* .gallery img:hover{
-      transform: scale(1.1);
+.gallery img:hover {
+    opacity: 0.9;
 }
 
-.gallery video:hover {
-      transform: scale(1.02);
-} */
-
-.gallery video{
+.gallery video {
+    background: var(--ink);
+    aspect-ratio: 3/4;
     object-fit: cover;
-    width: 100%;
-    height: 400px;
-    box-shadow: 0 0 17px var(--global-color-2);
 }
 
 .before-after {
-    display: flex;
-    grid-template-columns: repeat(auto-fit , minmax(200px , 600px));
-    gap: 4rem  1rem;
-    padding: 2rem 4rem 6rem; 
-    justify-content: flex;
-    overflow-y: auto;
-}
-
-.before-after .grid-box:hover{
-      transform: scale(1.1);
-      transition: ease .5s;
-    
-}
-
-.before-after .grid-box {
-    display: flex;
-    gap: 1rem;
-}
-
-.before-after .grid-box .box{
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.before-after .grid-box .box:nth-child(1){
-    flex-direction: column-reverse;
-}
-
-.before-after .grid-box .box .img{
-    height: 100%;
-    width: 100%;
-    overflow-y: hidden;
-    overflow-x:hidden ;
-    box-shadow: 0 0 17px var(--global-color-2);
-}
-
-.before-after .grid-box .box .img img{
-    height: 100%;
-    width: 100%;
-}
-
-.before-after  .grid-box  .box .text {
-    overflow-y: hidden;
-    overflow-x: hidden;
+    padding: 4rem 4vw 6rem;
+    max-width: 1100px;
+    margin: 0 auto;
     text-align: center;
-    font-weight: 700;
-    font-size: 1.4rem;
-    font-family: var(--font-02);
+}
 
+.before-after h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 2.1rem;
+    margin: 0.5rem 0 0.8rem;
+}
+
+.ba-intro {
+    color: var(--ink);
+    opacity: 0.65;
+    max-width: 55ch;
+    margin: 0 auto 2.5rem;
+    font-size: 0.9rem;
+}
+
+.ba-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+
+.ba-pair {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.ba-box {
+    position: relative;
+    flex: 1;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.ba-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ba-label {
+    position: absolute;
+    bottom: 0.7rem;
+    left: 0.7rem;
+    background: var(--ink);
+    color: var(--gold-soft);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+}
+
+@media (max-width: 900px) {
+    .ba-grid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>

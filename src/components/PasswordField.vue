@@ -37,7 +37,6 @@ const emit = defineEmits(['update:modelValue']);
 
 
 //Variables for internal state
-
 const showPassword = ref(false);
 
 //Toggle password function

@@ -1,78 +1,83 @@
 <template>
     
-    <section class="first-section">
-        <h1>Services</h1>
-        
-        <!--The Image-->
-        <section class="transform-img">
-            <img src="/background180.svg" alt="">
-        </section>
+    <section class="services-hero">
+        <img src="/services-5.jpg" alt="" class="services-hero-img" />
+        <div class="services-hero-scrim"></div>
+        <div class="services-hero-content">
+            <p class="eyebrow">What we offer</p>
+            <h1>Services</h1>
+        </div>
     </section>
 
+    <svg class="braid-divider on-dark" viewBox="0 0 400 28" preserveAspectRatio="none">
+        <path d="M0 14 Q 20 0, 40 14 T 80 14 T 120 14 T 160 14 T 200 14 T 240 14 T 280 14 T 320 14 T 360 14 T 400 14" />
+        <path d="M0 14 Q 20 28, 40 14 T 80 14 T 120 14 T 160 14 T 200 14 T 240 14 T 280 14 T 320 14 T 360 14 T 400 14" />
+    </svg>
+
     <section class="about-services">
-        <div class="lit-text">Choose From our Collection</div>
-        <p class="ser-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro magnam impedit ipsum optio commodi, deserunt nam accusamus molestiae unde, dolore maiores a deleniti dicta nesciunt placeat quaerat quos veniam assumenda?</p>
+        <p class="eyebrow" style="text-align:center;">Choose from our collection</p>
+        <h2 class="lit-text">Every style, done by hand</h2>
+        <p class="ser-text">Every style is done by hand, with the time taken to get parts, tension and finish right. Below is a starting point — get in touch for pricing and timing.</p>
 
         <div class="ser-box">
             <!--Service 1-->
             <div class="box">
                 <div class="img">
-                    <img src="/services-1.jpg" >
+                    <img src="/services-1.jpg" alt="Nails">
                 </div>
                 <div class="box-info">
                     <div class="ser-name">Nails</div>
-                    <p class="ser-description">Description of Service</p>
+                    <p class="ser-description">Tidy, long-lasting nail sets to finish any look.</p>
                 </div>
             </div>
             <!--Service 2-->
             <div class="box">
                 <div class="img">
-                    <img src="/services-2.jpg" >
+                    <img src="/services-2.jpg" alt="Braids">
                 </div>
                 <div class="box-info">
                     <div class="ser-name">Braids</div>
-                    <p class="ser-description">Description of Service</p>
+                    <p class="ser-description">Classic box braids, sizes and lengths to suit you.</p>
                 </div>
             </div>
             <!--Service 3-->
             <div class="box">
                 <div class="img">
-                    <img src="/services-3.jpg" >
+                    <img src="/services-3.jpg" alt="Locs">
                 </div>
                 <div class="box-info">
                     <div class="ser-name">Locs</div>
-                    <p class="ser-description">Description of Service</p>
+                    <p class="ser-description">Retwists, styling and maintenance for healthy locs.</p>
                 </div>
             </div>
             <!--Service 4-->
             <div class="box">
                 <div class="img">
-                    <!--<video :src="sourceVideo" controls width="450" height="400"></video>-->
-                    <img src="/services-5.jpg">
+                    <img src="/services-5.jpg" alt="French Curls">
                 </div>
                 <div class="box-info">
                     <div class="ser-name">French Curls</div>
-                    <p class="ser-description">Description of Service</p>
+                    <p class="ser-description">Soft, bouncy curl sets for everyday or special occasions.</p>
                 </div>
             </div>
             <!--Service 5-->
             <div class="box">
                 <div class="img">
-                    <img src="/services-6.jpg">
+                    <img src="/services-6.jpg" alt="Cornrows">
                 </div>
                 <div class="box-info">
-                    <div class="ser-name">Corn rows</div>
-                    <p class="ser-description">Description of Service</p>
+                    <div class="ser-name">Cornrows</div>
+                    <p class="ser-description">Clean, close-to-scalp braids in classic or custom patterns.</p>
                 </div>
             </div>
             <!--Service 6-->
             <div class="box">
                 <div class="img">
-                    <img src="/services-7.jpg" >
+                    <img src="/services-7.jpg" alt="Knotless braids">
                 </div>
                 <div class="box-info">
-                    <div class="ser-name">Knotless braids</div>
-                    <p class="ser-description">Description of Service</p>
+                    <div class="ser-name">Knotless Braids</div>
+                    <p class="ser-description">Lightweight, tension-free braids that lay flat from day one.</p>
                 </div>
             </div>
             
@@ -108,20 +113,27 @@
         </div>
     </section> -->
     
-    <section class="appointment-section">
+    <section class="appointment-cta">
         <div class="btn-wrapper" v-if="!user">
-            <p class="app-text">To make an Appointment please <router-link to="/sign-in">Sign In </router-link></p>
-        <button @click="toggleForm" class="show-btn" :disabled="!user">
-            Make Appointment
-        </button>
+            <p class="eyebrow">Ready to book</p>
+            <h2>Make an appointment</h2>
+            <p class="app-text">To book, please <router-link to="/sign-in">sign in</router-link> first.</p>
+            <button @click="toggleForm" class="btn btn-outline" :disabled="!user">
+                Make appointment
+            </button>
         </div>
 
         <div v-else class="btn-wrapper">
-            <button class="show-btn" @click="toggleForm">
-                {{ showForm ? "Close Appointment Form" : "Make Appointment" }}
+            <p class="eyebrow">Ready to book</p>
+            <h2>Make an appointment</h2>
+            <button class="btn btn-solid" @click="toggleForm">
+                {{ showForm ? "Close appointment form" : "Make appointment" }}
             </button>
         </div>
-   <AppointmentForm v-if="canShowForm && user" /> 
+    </section>
+
+    <section class="appointment-form-wrap" v-if="canShowForm && user">
+        <AppointmentForm />
     </section>
 </template>
 
@@ -360,5 +372,173 @@ a {
 .app-text {
     margin-top: 2px;
     margin-bottom: 2em;
+}.services-hero {
+    position: relative;
+    min-height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.services-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.services-hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(27, 17, 20, 0.72);
+}
+
+.services-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--cream);
+}
+
+.services-hero-content h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 6vw, 4rem);
+    margin-top: 0.5rem;
+}
+
+.about-services {
+    padding: 5rem 4vw 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.about-services .lit-text {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 2.1rem;
+    text-align: center;
+    color: var(--ink);
+}
+
+.about-services .ser-text {
+    text-align: center;
+    max-width: 55ch;
+    color: var(--ink);
+    opacity: 0.75;
+    margin-bottom: 2.5rem;
+}
+
+.about-services .ser-box {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    color: #fff;
+}
+
+.about-services .ser-box .box {
+    position: relative;
+    top: 0;
+    border-radius: 2px;
+    overflow: hidden;
+    transition: transform 0.35s ease;
+}
+
+.about-services .ser-box .box:hover {
+    transform: translateY(-6px);
+}
+
+.about-services .ser-box .box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(27, 17, 20, 0.85) 0%, rgba(27, 17, 20, 0.05) 55%);
+    z-index: 1;
+}
+
+.about-services .ser-box .box .img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+}
+
+.about-services .ser-box .box .img img,
+.about-services .ser-box .box .img video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-services .ser-box .box .box-info {
+    position: absolute;
+    bottom: 1.2rem;
+    left: 1.2rem;
+    right: 1.2rem;
+    z-index: 2;
+}
+
+.about-services .ser-box .box .ser-name {
+    padding-bottom: 0.4rem;
+    font-size: 1.25rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+}
+
+.about-services .ser-box .box .ser-description {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--cream-dim);
+}
+
+.appointment-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.6rem;
+    padding: 5rem 4vw;
+    margin-top: 3rem;
+    background: var(--burgundy);
+    color: var(--cream);
+}
+
+.appointment-cta h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+.appointment-cta .btn-outline {
+    border-color: var(--cream);
+}
+
+.btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.appointment-cta a {
+    color: var(--gold-soft);
+    text-decoration: underline;
+}
+
+.app-text {
+    margin-bottom: 1.4rem;
+    color: var(--cream-dim);
+}
+
+.appointment-form-wrap {
+    padding: 3rem 4vw 5rem;
+    max-width: 700px;
+    margin: 0 auto;
 }
 </style>

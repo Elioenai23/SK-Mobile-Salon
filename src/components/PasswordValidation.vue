@@ -11,9 +11,9 @@
 import { ref, watch, defineEmits } from 'vue';
 
 
-
 //This entire block of script is to validate client passwords
 //It's a component so that I can use it again in another page
+
 const props = defineProps({
     password: String,
     confirmPassword: {

@@ -1,37 +1,42 @@
 <template>
-    <header>
-       <button
-        class="hamburger"
-        v-if="isMobile"
-        @click="toggleNav"
-        >
-        ☰
+    <header class = "site-header">
+      <router-link to ="/">SK <span>Mobile Salon</span></router-link>
+
+      <button class="hamburger" @click="isOpen = !isOpen" :aria-expanded="isOpen" aria-label="Toggle menu">
+          <span :class="{open: isOpen}"></span>
       </button>
-       <div
-    class="nav-hotspot"
-    @mouseenter="showNav"
-  ></div>
-
-    <div class="nav-container">
-    <nav class="nav" :class="{retracted: isRetracted}" @mouseenter="!isMobile && showNav()" @mouseleave="!isMobile && scheduleHide()">
+    
+    <nav class="nav" :class="{open: isOpen}">
      
-        <router-link to="/" class="item">Home</router-link>
-        <router-link to="/register" class="item" v-if="!isLoggedIn">Register</router-link>
-        <router-link to="/sign-in" class="item" v-if="!isLoggedIn">Sign In/Log In</router-link>
-        <router-link to="/about" class="item">About</router-link>
-        <router-link to="/portfolio" class="item">Portfolio</router-link>
-        <router-link to="/services" class="item">Services</router-link>
+        <router-link to="/" class="item" @click="isOpen = false">Home</router-link>
+        <router-link to="/about" class="item" @click="isOpen = false">About</router-link>
+        <router-link to="/portfolio" class="item" @click="isOpen = false">Portfolio</router-link>
+        <router-link to="/services" class="item" @click="isOpen = false">Services</router-link>
+         <router-link to="/register" class="item" v-if="!isLoggedIn" @click="isOpen = false">Register</router-link>
+        <router-link to="/sign-in" class="item" v-if="!isLoggedIn" @click="isOpen = false">Sign In</router-link>
+        <button @click="handleSignOut" v-if="isLoggedIn" class="item signout-btn">Sign Out</button>
+        <router-link to="/services" class="item book-btn" @click="isOpen = false">Book now</router-link>
 
-        <button @click="handleSignOut" v-if="isLoggedIn" class="signout-btn">Sign Out</button>
+        
     </nav>
-    </div>
 </header>
+
  <router-view />
 
- <footer class="footer">
-    <div class="f-box">Copyright &copy; 2025</div>
-    <div>Powered by <a href="https://vuejs.org">Vue.js</a></div>
- </footer>
+  <footer class="site-footer">
+        <div class="footer-col">
+            <p class="footer-brand">SK Mobile Salon</p>
+            <p>121 Andringa St, Stellenbosch Central, Stellenbosch</p>
+        </div>
+        <div class="footer-col">
+            <p><FontAwesomeIcon :icon="['fas', 'phone']" /> 000 000 0000</p>
+            <p><FontAwesomeIcon :icon="['fas', 'envelope']" /> hello@skmobilesalon.co.za</p>
+            <p><FontAwesomeIcon :icon="['fab', 'instagram']" /> @skmobilesalon</p>
+        </div>
+        <div class="footer-col footer-copy">
+            <p>&copy; 2026 SK Mobile Salon</p>
+        </div>
+    </footer>
 
 </template>
 
@@ -41,80 +46,85 @@
 import { onMounted, ref , onBeforeUnmount} from 'vue';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import router from './router';
-import { db } from './firebase';
+import { FontAwesomeIcon } from './icons';
 
-const AUTO_HIDE_DELAY = 2500;
+//const AUTO_HIDE_DELAY = 2500;
 
-const startAutoHide = () => {
-  clearTimeout(timeoutId)
-  timeoutId = setTimeout(()=>{
-    isRetracted.value = true
-  }, AUTO_HIDE_DELAY)
-}
+//const startAutoHide = () => {
+ // clearTimeout(timeoutId)
+//  timeoutId = setTimeout(()=>{
+  //  isRetracted.value = true
+  //}, AUTO_HIDE_DELAY)
+//}
 
 const isLoggedIn = ref(false);
+const isOpen = ref(false);
 
 let auth;
 onMounted(() =>{
     auth = getAuth();
     onAuthStateChanged(auth, (user) => {
-        if (user) {
-            isLoggedIn.value = true;
-        } else {
-            isLoggedIn.value = false;
-        }
+       isLoggedIn.value = !!user;
     });
-})
+});
 
 
 const handleSignOut = () =>{
     signOut(auth).then(() =>{
+      isOpen.value = false;
         router.push('/');
     });
 }
+const handleResize = () => {
+  if (window.innerHeight > 860) isOpen.value = false;
+};
+onMounted(()=> window.addEventListener('resize', handleResize));
+onBeforeUnmount(()=> window.removeEventListener('resize', handleResize));
 
 //Functions for the transitioning of the navbar
-let showTimeout;
+//let showTimeout;
 
-const isRetracted = ref(false);
-let timeoutId;
+//const isRetracted = ref(false);
+//let timeoutId;
 
-const showNav = () => {
-  if (isMobile.value) return  //modified handlers for mobile view
-  isRetracted.value = false
-  clearTimeout(timeoutId)
-};
+//const showNav = () => {
+  //if (isMobile.value) return  //modified handlers for mobile view
+  //isRetracted.value = false
+  //clearTimeout(timeoutId)
+//};
 
-const scheduleHide = () => {
-  if(isMobile.value) return
-  clearTimeout(timeoutId);
-  timeoutId = setTimeout(() => {
-    isRetracted.value = true;
-  }, 3000);
-};
-onBeforeUnmount(() => {
-  clearTimeout(timeoutId);
-});
+//const scheduleHide = () => {
+  //if(isMobile.value) return
+  //clearTimeout(timeoutId);
+  //timeoutId = setTimeout(() => {
+    //isRetracted.value = true;
+  //}, 3000);
+//};
+//onBeforeUnmount(() => {
+  //clearTimeout(timeoutId);
+//});
 
-onMounted(() => {
-  scheduleHide();
-});
+
+
+//onMounted(() => {
+  //scheduleHide();
+//});
 
 //This entire block of code is for the mobile view of the app
-const isMobile = ref(window.innerWidth <= 1200)
+//const isMobile = ref(window.innerWidth <= 1200)
 
-const handleResize = () => {
-  isMobile.value = window.innerWidth <= 1200
+//const handleResize = () => {
+  //isMobile.value = window.innerWidth <= 1200
 
-  if (isMobile.value) {
-    isRetracted.value = true
-    clearTimeout(timeoutId)
-  } else {
-    scheduleHide()
-  }
-}
+  //if (isMobile.value) {
+    //isRetracted.value = true
+    //clearTimeout(timeoutId)
+  //} else {
+    //scheduleHide()
+  //}
+//}
 
-onMounted(()=> {
+/* onMounted(()=> {
   window.addEventListener('resize', handleResize)
 })
 
@@ -138,190 +148,162 @@ const toggleNav = () =>{
   } else {
     clearTimeout(timeoutId)
   }
-}
+} */
 
 </script>
 
 <style>
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+    background: var(--ink);
+    border-bottom: 1px solid var(--line-on-dark);
 }
 
-header{
-  height: 0;
-}
-
-
-.nav a {
-  color:#fff;
+.brand {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--cream);
     text-decoration: none;
-  text-shadow: 4px 4px 4px #000;
-  letter-spacing: 2px;
-  transition: 400ms cubic-bezier(0.7, -0.6, 0.3, 1.2) text-shadow,
-    400ms cubic-bezier(0.7, -0.6, 0.3, 1.2) letter-spacing;
+    letter-spacing: 0.02em;
 }
 
-.nav-container {
-  width: auto;
-  height: 4em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-nav {
-    top: 1em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  height: 80px;
-  background: #eec0c8;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-  border-radius: 15px;
+.brand span {
+    color: var(--gold-soft);
+    font-weight: 300;
+    font-style: italic;
 }
 
 .nav {
-  width: 65%;
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  max-width: 1100px;
-  align-items: center;
-  position: fixed;
-  padding: 10 2em;
-  background: #f70077;
-  z-index: 1000;  
-  transition:transform 900ms cubic-bezier(0.16, 1, 0.3, 1), opacity 600ms ease-out;
-   
-    
-
-}
-.nav.retracted {
-  transform: translate(-50%, -120%);
-   opacity: 0;
-  pointer-events: none;
-   transition: transform 500ms cubic-bezier(0.7, 0, 0.84, 0), opacity 300ms ease-in;
-    
-    
-}
-.nav-hotspot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 25px;
-  z-index: 999;
-  transition: transform 0.3s ease-in-out ;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
-.item {
-  position: relative;
-  user-select: none;
-  font-size: 20px;
-  text-transform: uppercase;
-  cursor: pointer;
-  margin: 0;
-}
-
-.item a:before {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 0px;
-  width: 100%;
-  height: 2px;
-  background: #fff;
-  box-shadow: 1px 1px 1px #000;
-  transform: scaleX(0);
-  transition: 400ms cubic-bezier(0.7, -0.6, 0.3, 1.2) transform;
-}
-
-.item:hover {
-  text-shadow: 1px 1px 1px #000;
-  letter-spacing: 5px;
-}
-
-.item:hover:before {
-  transform: scaleX(1);
-}
-.signout-btn {
-    
+.nav .item {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    color: var(--cream);
+    text-transform: uppercase;
+    background: none;
     border: none;
-    padding: 8px 16px;
-    font-size: 16px;
     cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    margin-left: 20px;
+    padding: 0;
+    position: relative;
+}
+
+.nav .item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+}
+
+.nav .item:hover::after,
+.nav .item.router-link-active::after {
+    width: 100%;
+}
+
+.nav .book-btn {
+    text-transform: none;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 0.6rem 1.3rem;
+    border-radius: 2px;
+    font-weight: 500;
+}
+
+.nav .book-btn::after {
+    display: none;
 }
 
 .hamburger {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 28px;
-  color: black;
-  cursor: pointer;
-  position: fixed;
-  top: 12px;
-  left: 16px;
-  z-index: 1100;
-}
-
-/* Mobile screen  */
-@media (max-width: 1350px) {
-  .nav {
-    width: 85%;
-    max-width: 420px;
-    flex-direction: column;
-    height: auto;
-    top: 60px;
-  }
-
-  .hamburger {
-    display: block;
-    margin-bottom: 1em;
-  }
-
-  .item {
-    margin: 10px 0;
-  }
-
-  .nav.retracted {
-    transform: translate(-50%, -200%);
-    opacity: 0;
-  }
-}
-
-@media (max-width: 768px){
-  .nav-hotspot {
     display: none;
-  }
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 28px;
+    height: 22px;
+    position: relative;
 }
 
-
-
-footer {
-    background-color: var(--global-color-2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    position:fixed;
-    bottom: 0;
+.hamburger span,
+.hamburger span::before,
+.hamburger span::after {
+    content: '';
+    position: absolute;
+    left: 0;
     width: 100%;
-    z-index: 2000;
-    color:white;
+    height: 2px;
+    background: var(--cream);
+    transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
 }
 
-.footer a{
-  color:white;
+.hamburger span { top: 10px; }
+.hamburger span::before { top: -8px; }
+.hamburger span::after { top: 8px; }
+
+.hamburger span.open { background: transparent; }
+.hamburger span.open::before { top: 0; transform: rotate(45deg); }
+.hamburger span.open::after { top: 0; transform: rotate(-45deg); }
+
+@media (max-width: 860px) {
+    .hamburger { display: block; }
+
+    .nav {
+        position: fixed;
+        inset: 65px 0 0 0;
+        background: var(--ink);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.6rem;
+        padding: 2.5rem;
+        transform: translateX(100%);
+        transition: transform 0.35s ease;
+    }
+
+    .nav.open {
+        transform: translateX(0);
+    }
 }
 
+.site-footer {
+    background: var(--ink);
+    color: var(--cream);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 3rem 2.5rem;
+    font-size: 0.9rem;
+}
+
+.footer-brand {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--gold-soft);
+}
+
+.footer-col p {
+    margin-bottom: 0.4rem;
+    color: var(--cream-dim);
+}
+
+.footer-copy {
+    align-self: flex-end;
+}
 
 
 

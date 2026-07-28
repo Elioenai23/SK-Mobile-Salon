@@ -10,12 +10,13 @@
 
         
   <form @submit.prevent='handleSubmit' class="form">
+
     <!--The name for the client-->
     <label>
         Name & Surname:
         <input v-model= 'clientName' type='text' required />
     </label>
-    <!--New Category dropdown-->
+    <!--Category dropdown button of each service-->
 <label>
         Category: 
         <select v-model="selectedCategory" required class="category">
@@ -25,7 +26,7 @@
             </option>
         </select>
 </label>
-    <!--Service-->
+    <!--Services of the salon-->
     <label v-if="selectedCategory">
         Service: 
         <select v-model = 'selectedService' required class="services">
@@ -40,7 +41,7 @@
         </select>
     </label>
 
-    <!--Visit type-->
+    <!--Visit type salon or home visit-->
     <label>
         Visit Type:
         <select v-model='visitType' required >
@@ -49,14 +50,15 @@
             <option value='home'>Home Visit</option>
         </select>
     </label>
-        <!--The Date-->
-    <label>
 
+        <!--The Date of the appointment-->
+    <label>
         Date:
         <input v-model='date' type='date' required  />
         
     </label>
-      <!--Time-->
+
+      <!--Time of the appointment-->
     <div v-if="availableSlots.length" class="slots-wrapper">
   <p>Select a Time:</p>
 
@@ -90,6 +92,7 @@
 
     <!--Displaying the time the appointment should end-->
     <p v-if="formattedEndTime">Your appointment will end at: {{ formattedEndTime }}</p>
+    
     <!--Submit-->
     <button class="submit-btn" type='submit' 
     :disabled="!isFormValid">
@@ -122,6 +125,8 @@ const dayBookings = ref([]);
 const effectiveDuration = computed(() =>{
     return selectedService.value?.duration ?? 30;
 })
+
+
 
 const overlapsWithService = (slotStart, booking) => {
     const slotEnd = new Date (
@@ -203,7 +208,7 @@ const loadBookingsForDay = async () => {
     })
 }
 
-//Watch for the loadBookingsForDay function
+//Watching the loadBookingsForDay function
 watch(date, async () => {
     await loadBookingsForDay()
     generateAvailableSlots()
@@ -223,12 +228,9 @@ onAuthStateChanged(auth, (u)=>{
 });
 
 
-
-
-
 //New additions because the database stuff got redesigned/remade
 const categories = computed(()=>{
-    const map = {}
+    const map = {};
 
     services.value.forEach(service => {
         if (!map[service.category]){
@@ -236,9 +238,9 @@ const categories = computed(()=>{
         }
         map[service.category].push(service)
 
-    })
+    });
 
-    return map
+    return map;
 })
 const selectedCategory = ref('');
 
@@ -249,7 +251,6 @@ const durationMinutes = ref(30); //Will default to 30 minutes
 
 //the services collection from my firebase db
 const services = ref([]);
-//pulling from the services collection
 
 
 //Filtering services based on selected category
@@ -259,22 +260,22 @@ const filteredServices = computed (() =>{
 onMounted(async () =>{
  //Fetching services from Firestore
     try{
-        const querySnapshot = await getDocs(collection(db, 'services'))
+        const querySnapshot = await getDocs(collection(db, 'services'));
 
         services.value = querySnapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data()
-        }))
-        console.log('Loaded services:', services.value)
+        }));
+        console.log('Loaded services:', services.value);
     }
      catch(error){
-        console.error('Error loading services: ', error)
+        console.error('Error loading services: ', error);
     }
       
 });
 
 watch(selectedService, (service) => {
-    //updating duration based on selected service
+    //updating duration based on the selected service
     if (!service || !service.duration) return;
         durationHours.value = Math.floor(service.duration / 60);
         durationMinutes.value = service.duration % 60;
@@ -284,14 +285,14 @@ watch(selectedService, (service) => {
     //This is the logic to render the available booking slots
     const selectSlot = (slot) =>{
         if (!slot.available) return
-        time.value = slot.start.toTimeString().slice(0, 5)
+        time.value = slot.start.toTimeString().slice(0, 5);
     }
 
     const formatTime = (date) => {
         return date.toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit'
-        })
+        });
     }
     
 
