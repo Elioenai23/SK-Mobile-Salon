@@ -1,7 +1,7 @@
 <template>
     
     <section class="services-hero">
-        <img src="/services-5.jpg" alt="" class="services-hero-img" />
+        <img src="/services-7.jpg" alt="" class="services-hero-img" />
         <div class="services-hero-scrim"></div>
         <div class="services-hero-content">
             <p class="eyebrow">What we offer</p>
@@ -189,7 +189,7 @@ console.log(AppointmentForm)
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Philosopher&family=Poppins:wght@300&display=swap');
 
 
-.first-section {
+/*.first-section {
     padding: 12rem 0% 15rem;
     position: relative;
 }
@@ -337,7 +337,7 @@ console.log(AppointmentForm)
     top: 0;
     left: 0;
 } */
-
+/*
 .appointment-section {
   padding: 2rem 4rem 6rem;
   margin-top: 1rem;
@@ -372,13 +372,17 @@ a {
 .app-text {
     margin-top: 2px;
     margin-bottom: 2em;
-}.services-hero {
+     
+} */
+
+.services-hero {
     position: relative;
     min-height: 45vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    ;
 }
 
 .services-hero-img {
@@ -387,6 +391,7 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 15%
 }
 
 .services-hero-scrim {

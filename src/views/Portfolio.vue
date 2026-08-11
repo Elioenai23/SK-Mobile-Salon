@@ -1,6 +1,6 @@
 <template>
     <section class="portfolio-hero">
-        <img src="/portfolio-9.jpg" alt="" class="portfolio-hero-img" />
+        <img src="/services-1.jpg" alt="" class="portfolio-hero-img" />
         <div class="portfolio-hero-scrim"></div>
         <div class="portfolio-hero-content">
             <p class="eyebrow">Recent work</p>
@@ -14,7 +14,7 @@
     </svg>
 
     <section class="gallery-section">
-        <div class="gallery">
+        <div class="gallery box">
             <img src="/portfolio-1.jpg" alt="">
             <img src="/portfolio-3.jpg" alt="">
             <video :src="videoSource" controls></video>
@@ -127,6 +127,7 @@ const videoSource3 = ref(portfolioVideo3)
     border-radius: 2px;
     break-inside: avoid;
     transition: opacity 0.3s ease;
+    box-shadow: 0 0 18px 2px ;
 }
 
 .gallery img:hover {
@@ -144,6 +145,7 @@ const videoSource3 = ref(portfolioVideo3)
     max-width: 1100px;
     margin: 0 auto;
     text-align: center;
+    box-shadow: 0 0 18px ;
 }
 
 .before-after h2 {
@@ -197,6 +199,8 @@ const videoSource3 = ref(portfolioVideo3)
     text-transform: uppercase;
     padding: 0.3rem 0.7rem;
 }
+
+
 
 @media (max-width: 900px) {
     .ba-grid {

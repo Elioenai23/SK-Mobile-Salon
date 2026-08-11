@@ -1,6 +1,6 @@
 <template>
     <section class="hero">
-        <img src="/home-1.jpg" alt="Braided hairstyle by SK Mobile Salon" class="hero-img" />
+        <img src="/services-7(1).jpg" alt="Braided hairstyle by SK Mobile Salon" class="hero-img" />
         <div class="hero-scrim"></div>
         <div class="hero-content">
             <p class="eyebrow">Stellenbosch, Western Cape</p>
@@ -73,8 +73,8 @@
 const services = [
     { title: 'Protective styles', desc: 'Placeholder copy about cornrows, box braids, and knotless styles.', img: '/portfolio-1.jpg' },
     { title: 'Wedding styling', desc: 'Placeholder copy about bridal and occasion hair.', img: '/services-1.jpg' },
-    { title: 'Everyday braids', desc: 'Placeholder copy about low-maintenance, everyday looks.', img: '/portfolio-7.jpg' },
-    { title: 'Kids styling', desc: 'Placeholder copy about gentle, patient styling for children.', img: '/services-2.jpg' },
+    { title: 'Everyday braids', desc: 'Placeholder copy about low-maintenance, everyday looks.', img: '/services-2.jpg' },
+    { title: 'Kids styling', desc: 'Placeholder copy about gentle, patient styling for children.', img: '/kids-styling.webp' },
 ];
 </script>
 
@@ -93,7 +93,7 @@ const services = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top;
+    object-position: center 50%;
 }
 
 .hero-scrim {

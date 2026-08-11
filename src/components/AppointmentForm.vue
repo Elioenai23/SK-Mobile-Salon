@@ -407,7 +407,7 @@ const handleSubmit = async() => {
 .submit-btn{
         margin: 1em;
         padding: 0.5em 1em;
-        background-color: pink;
+        background-color: var(--burgundy);
         color: black;
         border: none;
         border-radius: px;
@@ -465,7 +465,7 @@ const handleSubmit = async() => {
 }
 
 .slot-btn:hover {
-  background: pink;
+  background: var(--burgundy);
 }
 
 .slot-btn.booked {
@@ -475,7 +475,7 @@ const handleSubmit = async() => {
 }
 
 .slot-btn.selected {
-  background: pink;
+  background: var(--burgundy);
   font-weight: bold;
 }
 </style>
